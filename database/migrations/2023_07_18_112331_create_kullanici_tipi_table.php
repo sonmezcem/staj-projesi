@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('evraklar', function (Blueprint $table) {
+        Schema::create('kullanici_tipi', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('ogrenci_id');
-            $table->foreign('ogrenci_id')->references('id')->on('ogrenciler');
-            $table->unsignedBigInteger('evrak_turu');
-            $table->foreign('evrak_turu')->references('id')->on('evrak_turleri');
-            $table->tinyText('dosya_yolu');
+            $table->integer('kullanici_tipi');
+            $table->string('kullanici_tipi_adi',50);
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('evraklar');
+        Schema::dropIfExists('kullanici_tipi');
     }
 };

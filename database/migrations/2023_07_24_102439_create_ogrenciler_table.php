@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('ogrenciler', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('uye_id');
-            $table->foreign('uye_id')->references('id')->on('kullanicilar');
-            $table->tinyText('ogrenci_belgesi');
-            $table->unsignedBigInteger('istedigi_birim');
-            $table->foreign('istedigi_birim')->references('id')->on('birimler');
+            $table->integer('ogrenci_no');
             $table->date('staj_baslama_tarihi');
             $table->date('staj_bitis_tarihi');
+            $table->unsignedBigInteger('kullanici_id');
+            $table->foreign('kullanici_id')->references('id')->on('kullanicilar');
+            $table->unsignedBigInteger('isletme_id');
+            $table->foreign('isletme_id')->references('id')->on('isletmeler');
             $table->timestamps();
         });
     }

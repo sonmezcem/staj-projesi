@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('birimler', function (Blueprint $table) {
+        Schema::create('isletmeler', function (Blueprint $table) {
             $table->id();
-            $table->tinyText('birim');
-            $table->timestamps();
+            $table->string('isletme_adi',100);
+            $table->string('isletme_adresi',400);
+            $table->string('isletme_telefon',10);
+            $table->integer('kontenjan');
+            $table->boolean('durum');
         });
     }
 
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('birimler');
+        Schema::dropIfExists('isletmeler');
     }
 };
