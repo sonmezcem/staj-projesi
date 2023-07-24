@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="../gentelella-master/production/images/favicon.ico" type="image/ico" />
     <title>Staj Takip Sistemi</title>
 
     <!-- Bootstrap -->
@@ -27,10 +26,11 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="bos.html" class="site_title"><img src="images/firat_logo.gif" width="50" height="50"></i> <span>Fırat Üniversitesi</span></a>
+                    <a href="bos.html" class="site_title"><i class="fa fa-paw"></i> <span>Fırat Üniversitesi</span></a>
                 </div>
 
                 <div class="clearfix"></div>
+
 
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
@@ -54,6 +54,7 @@
                             <li><a><i class="fa fa-home"></i> Anasayfa <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="bos.html">Bilgilerim</a></li>
+
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-edit"></i> Staj Kayıt Formu <span class="fa fa-chevron-down"></span></a>
@@ -61,11 +62,10 @@
                                     <li><a href="../ayiklanmis-tema/staj-basvuru.html">Staj Başvuru Formu</a></li>
                                 </ul>
                             </li>
-                            <li><a><i class="fa fa-exclamation"></i>Staj Yeri Bulamadım<span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-exclamation"></i> Staj Yeri Bulamadım <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="staj-yeri-bulamadim.html">Staj Yeri</a></li>
                                 </ul>
-
                             </li>
                             <li>
                                 <ul class="nav child_menu">
@@ -116,7 +116,7 @@
                                 <li><a href="#level1_1">Level One</a>
                                 <li><a>Level One<span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                            <li class="sub_menu"><a href="../gentelella-master/production/level2.html">Level Two</a>
+                                        <li class="sub_menu"><a href="../gentelella-master/production/level2.html">Level Two</a>
                                         </li>
                                         <li><a href="#level2_1">Level Two</a>
                                         </li>
@@ -179,12 +179,104 @@
                 <div class="col-md-12 col-sm-12 ">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Bilgilerim</h2>
+                            <h2>Öğrenci Bilgileri</h2>
 
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
                             <br />
+                            <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+
+                                <div class="item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Ad<span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input type="text" id="first-name" required="required" class="form-control ">
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Soyad <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input type="text" id="last-name" name="last-name" required="required" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label for="ogrenci-num" class="col-form-label col-md-3 col-sm-3 label-align">Öğrenci Numarası<span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input id="ogrenci-num" class="form-control" type="text" name="ogrenci-num"required="required">
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="tel-num">Telefon Numarası<span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input type="tel" id="tel-num" required="required" class="form-control ">
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+                                <h2>Staj Bilgileri</h2>
+                                <hr>
+                                <label for="staj-türü">  Staj Türü: </label>
+                                <select id="staj-türü" class="form-control" required="">
+                                    <option value="1.">Zorunlu</option>
+                                    <option value="2.">Gönüllü</option>
+                                </select>
+                                <label class="col-form-label col-md-3 col-sm-3 ">Staj Başlangıç Tarihi <span class="required">*</span>
+                                </label>
+                                <input class="date-picker form-control"  type="date" required="required" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+
+                                <label class="col-form-label col-md-3 col-sm-3 ">Staj Bitiş Tarihi <span class="required">*</span>
+                                </label>
+                                <input class="date-picker form-control"  type="date" required="required" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                <br>
+                                <br>
+                                <h2>Firma Bilgileri</h2>
+                                <hr>
+                                <div class="item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="firma-ad">Firma Adı <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input type="text" id="firma-ad" name="firma-ad" required="required" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="firma-adres">Firma Adresi <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input type="text" id="firma-adres" name="firma-adres" required="required" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="firma-tel">Firma Telefon Numarası <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input type="text" id="firma-tel" name="firma-tel" required="required" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="firma-eposta">Firma E-Posta Adresi <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input type="text" id="firma-eposta" name="firma-eposta" required="required" class="form-control">
+                                    </div>
+                                </div>
+
+                                <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage">(Lütfen Staj Başvuru Formunu Seçiniz)
+
+
+                                <div class="ln_solid"></div>
+                                <div class="item form-group">
+
+                                    <div class="col-md-6 col-sm-6 offset-md-3">
+
+                                        <button type="submit" class="btn btn-success">Fakülte Onayına Gönder </button>
+                                    </div>
+                                </div>
+
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -192,7 +284,6 @@
 
             <br />
         </div>
-
         <!-- /page content -->
 
         <!-- footer content -->
