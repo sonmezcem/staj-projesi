@@ -14,7 +14,10 @@
 <link href="{{url('css/jqvmap.css')}}" rel="stylesheet"/>
 <!-- bootstrap-daterangepicker -->
 <link href="{{url('css/daterangepicker.css')}}" rel="stylesheet">
-
+<!-- Animate (login) -->
+<link href="{{url('css/animate.min.css')}}" rel="stylesheet">
+<!-- Date range picker -->
+<link href="{{url('css/daterangepicker.css')}}" rel="stylesheet">
 <!-- Custom Theme Style -->
 <link href="{{url('css/custom.min.css')}}" rel="stylesheet">
 <link rel="stylesheet" href="{{url('css/bizim.css')}}">
