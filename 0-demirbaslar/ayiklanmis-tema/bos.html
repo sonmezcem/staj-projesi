@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="../gentelella-master/production/images/favicon.ico" type="image/ico" />
+    <link rel="icon" href="../ayiklanmis-tema/images/sekme-logo.png"/>
     <title>Staj Takip Sistemi</title>
 
     <!-- Bootstrap -->
@@ -27,7 +27,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="bos.html" class="site_title"><img src="images/firat_logo.gif" width="50" height="50"></i> <span>Fırat Üniversitesi</span></a>
+                    <a href="bos.html" class="site_title"><img src="images/firat_logo.gif" width="45" height="45"></i> <span>Fırat Üniversitesi</span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -35,7 +35,7 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img src="../gentelella-master/production/images/img.jpg" alt="..." class="img-circle profile_img">
+                        <img src="../ayiklanmis-tema/images/user.jpg" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>Hoşgeldiniz,</span>
@@ -111,23 +111,6 @@
                                 <li><a href="../gentelella-master/production/pricing_tables.html">Pricing Tables</a></li>
                             </ul>
                         </li>
-                        <li>
-                            <ul class="nav child_menu">
-                                <li><a href="#level1_1">Level One</a>
-                                <li><a>Level One<span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                            <li class="sub_menu"><a href="../gentelella-master/production/level2.html">Level Two</a>
-                                        </li>
-                                        <li><a href="#level2_1">Level Two</a>
-                                        </li>
-                                        <li><a href="#level2_2">Level Two</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a href="#level1_2">Level One</a>
-                                </li>
-                            </ul>
-                        </li>
                     </ul>
                 </div>
                 <!-- /sidebar menu -->
@@ -146,27 +129,14 @@
                     <ul class=" navbar-right">
                         <li class="nav-item dropdown open" style="padding-left: 15px;">
                             <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                                <img src="../gentelella-master/production/images/img.jpg" alt="">Mustafa Güngör
+                                <img src="../ayiklanmis-tema/images/user.jpg" alt="">Mustafa Güngör
                             </a>
                             <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item"  href="javascript:;"> Profil</a>
+                                <a class="dropdown-item"  href="profil.html"> Profil</a>
                                 <a class="dropdown-item"  href="../ayiklanmis-tema/login.html"><i class="fa fa-sign-out pull-right"></i> Çıkış Yap </a>
                             </div>
                         </li>
 
-                        <li role="presentation" class="nav-item dropdown open">
-                            <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-envelope-o"></i>
-
-                            </a>
-                            <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                                <li class="nav-item">
-
-
-                                </li>
-
-                            </ul>
-                        </li>
                     </ul>
                 </nav>
             </div>
@@ -176,22 +146,50 @@
         <!-- page content -->
         <div class="right_col" role="main">
             <div class="row">
-                <div class="col-md-12 col-sm-12 ">
+                <div class="col-md-12    col-sm-12 ">
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>Bilgilerim</h2>
-
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
-                            <br />
+                            <br/>
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-1 col-sm-0 ">Adı :</label>
+                                <div class="col-md-5 col-sm-5 ">
+                                    <input type="text" class="form-control" readonly="readonly" placeholder="Mustafa">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-1 col-sm-0 ">Soyadı :</label>
+                                <div class="col-md-5 col-sm-5 ">
+                                    <input type="text" class="form-control" readonly="readonly" placeholder="Güngör">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-1 col-sm-0 ">Telefon Numarası :</label>
+                                <div class="col-md-5 col-sm-5 ">
+                                    <input type="text" class="form-control" readonly="readonly" placeholder="0000-000-0000">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-1 col-sm-0 ">E-Posta Adresi :</label>
+                                <div class="col-md-5 col-sm-5 ">
+                                    <input type="text" class="form-control" readonly="readonly" placeholder="xxxxx@gmail.com">
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <!-- Staj Durumu-->
+
+                    <!-- Staj Durumu-->
+
                 </div>
             </div>
 
             <br />
         </div>
+
 
         <!-- /page content -->
 
