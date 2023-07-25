@@ -18,3 +18,9 @@ Route::get('/', function () {
     return view('anasayfa.index');
 
 });
+
+Route::get('/login', function(){
+
+    return view('bolumler.giris.giris');
+
+});
