@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr">
-@include('ortakdosyalar.head')
+@include('common.head')
 <body class="login">
 <div>
     <a class="hiddenanchor" id="signup"></a>
@@ -11,12 +11,16 @@
             <section class="login_content">
                 <img src="images/firat-logo-yatay.png" width="360" height="140">
                 <form action="/login-checker" method="POST" id="girisFormu">
+                    @csrf
                     <h1>Staj Takip Sistemi</h1>
-                    <div>
-                        <input type="text" class="form-control" placeholder="Kullanıcı Adı" required="" />
+                    <div id="hatadurumu">
+
                     </div>
                     <div>
-                        <input type="password" class="form-control" placeholder="Şifre" required="" />
+                        <input type="text" class="form-control" name="kullanici_adi" placeholder="Kullanıcı Adı" required="" />
+                    </div>
+                    <div>
+                        <input type="password" class="form-control" name="parola" placeholder="Şifre" required="" />
                     </div>
                     <div>
                         <a class="btn btn-default submit" href="#" id="girisYap">Giriş Yap</a>

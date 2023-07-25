@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('evraklar', function (Blueprint $table) {
+        Schema::create('businesses', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('ogrenci_id');
-            $table->foreign('ogrenci_id')->references('id')->on('ogrenciler');
-            $table->unsignedBigInteger('evrak_turu');
-            $table->foreign('evrak_turu')->references('id')->on('evrak_turleri');
-            $table->string('dosya_yolu',100);
+            $table->string('business_name',100);
+            $table->string('business_address',250);
+            $table->string('business_phone',10);
+            $table->integer('quota');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('evraklar');
+        Schema::dropIfExists('businesses');
     }
 };
