@@ -2,7 +2,7 @@
 <html lang="tr">
 
 <!-- head başlangıç-->
-@include('ortakdosyalar.head')
+@include('common.head')
 <!-- head başlangıç-->
 
 
@@ -269,7 +269,7 @@
     </div>
 </div>
 
-@include('ortakdosyalar.javascript')
+@include('common.javascript')
 
 </body>
 </html>

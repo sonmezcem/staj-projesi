@@ -9,9 +9,9 @@
 <link href="{{url('css/green.css')}}" rel="stylesheet">
 
 <!-- bootstrap-progressbar -->
-<link href="{{url('css/bootstrap-progressbar-3.3.4.min.css')}}" rel="stylesheet">
+<link href="{{url('css/bootstrap-progressbar-3.3.4.css')}}" rel="stylesheet">
 <!-- JQVMap -->
-<link href="{{url('css/jqvmap.min.css')}}" rel="stylesheet"/>
+<link href="{{url('css/jqvmap.css')}}" rel="stylesheet"/>
 <!-- bootstrap-daterangepicker -->
 <link href="{{url('css/daterangepicker.css')}}" rel="stylesheet">
 

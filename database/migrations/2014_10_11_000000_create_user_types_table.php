@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('isletmeler', function (Blueprint $table) {
+        Schema::create('user_types', function (Blueprint $table) {
             $table->id();
-            $table->string('isletme_adi',100);
-            $table->string('isletme_adresi',400);
-            $table->string('isletme_telefon',10);
-            $table->integer('kontenjan');
-            $table->boolean('durum');
+            $table->integer('user_type');
+            $table->string('user_type_name', 25);
+            $table->timestamps();
         });
     }
 
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('isletmeler');
+        Schema::dropIfExists('user_types');
     }
 };
