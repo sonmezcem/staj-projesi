@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,5 +16,9 @@ use App\Http\Controllers\LoginController;
 
 Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login-checker', [LoginController::class, 'loginChecker']);
+Route::post('/register', [LoginController::class, 'register']);
+Route::get('/dashboard', [DashboardController::class, 'index']);
+
+
 
 
