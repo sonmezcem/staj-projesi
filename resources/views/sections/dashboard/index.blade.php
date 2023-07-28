@@ -10,7 +10,7 @@
                     <a href="{{url('')}}" class="site_title"><img src="{{url('')}}/images/firat_logo.gif" width="45" height="45"></i> <span>Fırat Üniversitesi</span></a>
                 </div>
 
-                @if($user->user_type === 3)
+                @if(isset($user->user_type) && $user->user_type === 3)
 
                 @endif
 
@@ -23,9 +23,10 @@
                     </div>
                     <div class="profile_info">
                         <span>Hoşgeldiniz,</span>
-                        <h2>{{$user->name . ' ' . $user->surname}}</h2>
+                        <h2>{{--{{$user->name . ' ' . $user->surname}}--}}</h2>
                     </div>
                 </div>
+
                 <!-- /menu profile quick info -->
 
                 <br />
@@ -136,6 +137,8 @@
                             <h2>Bilgilerim</h2>
                             <div class="clearfix"></div>
                         </div>
+
+                        @if(isset($user))
                         <div class="x_content">
                             <br/>
                             <div class="form-group row">
@@ -162,10 +165,11 @@
                                     <input type="text" class="form-control" placeholder="{{$user->email}}">
                                 </div>
                             </div>
+                            @if(isset($user)) {{$user}} @endif
 
-                            {{$user}}
 
                         </div>
+                        @endif
                     </div>
                     <!-- Staj Durumu-->
 

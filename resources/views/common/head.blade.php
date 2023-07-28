@@ -3,8 +3,9 @@
 
     <link rel="icon" href="images/favicon.ico" type="image/ico" />
 
-    <title>Staj Takip Sistemi!</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     @include('common.css')
+    @include('custom.datatables')
 
 </head>

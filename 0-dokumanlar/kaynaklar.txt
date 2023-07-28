@@ -1,0 +1,13 @@
+Laravel Breeze Login with email or username >> https://www.youtube.com/watch?v=KLfhOThb4sQ
+Full Laravel Spatie Permission Tutorial | Laravel 9 tutorial >> https://www.youtube.com/watch?v=cNrMdCXNml8
+Laravel - Validation Message not showing on blade >> https://stackoverflow.com/questions/62811553/laravel-validation-message-not-showing-on-blade
+Add middleware to controller in __construct in Laravel >> https://stackoverflow.com/questions/59137174/add-middleware-to-controller-in-construct-in-laravel
+Available Validation Rules in Laravel >> https://www.tutorialspoint.com/laravel/laravel_validation.htm
+Laravel 9 Custom Auth Login and Registration Tutorial >> https://www.positronx.io/laravel-custom-authentication-login-and-registration-tutorial/
+Phone number functionality for Laravel >> https://github.com/Propaganistas/Laravel-Phone
+Laravel 10 Phone Number Validation With Country Code >> https://www.laravelia.com/post/laravel-10-phone-number-validation-with-country-code
+Laravel 9 Captcha Tutorial – Create Captcha in Laravel >> https://www.positronx.io/laravel-captcha-tutorial-example/
+Captcha for Laravel 5/6/7/8/9/10 >> https://github.com/mewebstudio/captcha#installation
+How to Create Captcha Code in Laravel? >> https://www.itsolutionstuff.com/post/how-to-create-captcha-code-in-laravel-5example.html
+redirect authentificated users to different pages by role using breeze authentification >> https://github.com/spatie/laravel-permission/issues/2199#issuecomment-1266648591
+Assign role to user while creating factory users. >> https://stackoverflow.com/a/75258187
