@@ -11,3 +11,9 @@ Captcha for Laravel 5/6/7/8/9/10 >> https://github.com/mewebstudio/captcha#insta
 How to Create Captcha Code in Laravel? >> https://www.itsolutionstuff.com/post/how-to-create-captcha-code-in-laravel-5example.html
 redirect authentificated users to different pages by role using breeze authentification >> https://github.com/spatie/laravel-permission/issues/2199#issuecomment-1266648591
 Assign role to user while creating factory users. >> https://stackoverflow.com/a/75258187
+Flex >> https://getbootstrap.com/docs/4.0/utilities/flex/
+Destroy route leads to Show route/view >> https://laracasts.com/discuss/channels/laravel/destroy-route-leads-to-show-routeview
+Laravel 10 Flash Message Example Tutorial >> https://www.itsolutionstuff.com/post/laravel-10-flash-message-example-tutorialexample.html
+How To Get Users by Role/Permission >> https://github.com/spatie/laravel-permission/issues/682
+Laravel Pagination is showing weird arrows >> https://stackoverflow.com/questions/64002774/laravel-pagination-is-showing-weird-arrows
+How To Change Password In Laravel 9 >> https://techtoolindia.com/how-to-change-password-in-laravel-9

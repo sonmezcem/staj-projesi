@@ -11,11 +11,16 @@ class IndexController extends Controller
 {
     public function index(){
 
-        $roles = Role::all();
-        $users = User::with('roles')->get();
-        $businesses = Business::all();
+/*        $roles = Role::all();
+        $officers = User::with('roles')
+            ->limit(100)
+            ->get();*/
 
-        return view('admin.index',compact('users','businesses'));
+        $officers = User::whereHas("roles", function($q){ $q->where("name", "Yetkili")->where('status', 1); })->get()->take(100);
+        $students = User::whereHas("roles", function($q){ $q->where("name", "Öğrenci")->where('status', 1); })->get()->take(100);
+        $businesses = Business::all()->take(100);
+
+        return view('admin.index',compact('officers','students','businesses'));
 
     }
 }
