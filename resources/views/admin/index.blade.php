@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-@include('common.head')
+@include('admin.common.head')
 <body class="nav-md">
 <div class="container body">
     <div class="main_container">
@@ -18,54 +18,13 @@
                 <div class="clearfix"></div>
 
                 <!-- menu profile quick info -->
-                <div class="profile clearfix">
-                    <div class="profile_pic">
-                        <img src="{{url('')}}/images/user.jpg" alt="..." class="img-circle profile_img">
-                    </div>
-                    <div class="profile_info">
-                        <span>Hoşgeldiniz,</span>
-                        <h2>{{ Auth::user()->name . ' ' . Auth::user()->surname   }} {{--{{$user->name . ' ' . $user->surname}}--}}</h2>
-                    </div>
-                </div>
-
+                @include('admin.common.menu-profile')
                 <!-- /menu profile quick info -->
 
                 <br/>
 
                 <!-- sidebar menu -->
-                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                    <div class="menu_section">
-                        <h3>Menu</h3>
-                        <ul class="nav side-menu">
-                            <li><a><i class="fa fa-home"></i> Anasayfa <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="bos-yetki.html">Tüm Tablolar</a></li>
-                                </ul>
-                            </li>
-                            <li><a><i class="fa fa-edit"></i> Yetkililer <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="yetkili-tablo.html">Yetkili Düzenleme</a></li>
-                                    <li><a href="yetkili-ekle.html">Yetkili Ekle</a></li>
-
-                                </ul>
-
-                            </li>
-                            <li><a><i class="fa fa-exclamation"></i>Öğrenciler<span
-                                        class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="ogrenci-tablo.html">Öğrenci Düzenleme</a></li>
-                                </ul>
-
-                            </li>
-                            <li><a><i class="fa fa-exclamation"></i>İşletmeler<span
-                                        class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="isletme-tablo.html">İşletme Düzenleme</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                @include('admin.common.sidebar')
                 <!-- /sidebar menu -->
 
 
@@ -83,7 +42,7 @@
                         <li class="nav-item dropdown open" style="padding-left: 15px;">
                             <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true"
                                id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                                <img src="{{Auth::user()->profile_picture}}"
+                                    <img src="{{url('')}}/images/user.jpg{{--{{Auth::user()->profile_picture}}--}}"
                                      alt="">{{ Auth::user()->name . ' ' . Auth::user()->surname   }}
                             </a>
                             <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
@@ -119,7 +78,8 @@
                             <h2>Yetkililer</h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li>
-                                    <a href="#yetkili-ekle"><i class="fa fa-plus"> Yetkili Ekle</i> </a>
+                                    <a href="{{--{{route('admin.officer.create')}}--}}"><i class="fa fa-plus"> Yetkili
+                                            Ekle</i> </a>
                                 </li>
                             </ul>
                             <div class="clearfix"></div>
@@ -147,20 +107,32 @@
 
 
                                             <tbody>
-                                            @foreach($users as $user)
-                                                @if($user->roles[0]->id === 2)
+                                            @foreach($officers as $user)
                                                     <tr>
                                                         <td>{{$user->id}}</td>
                                                         <td>{{$user->name}}</td>
                                                         <td>{{$user->surname}}</td>
                                                         <td>{{$user->phone}}</td>
                                                         <td>{{$user->email}}</td>
-                                                        <td class="pull-right">
-                                                            <a class="btn btn-info text-light">Düzenle</a>
-                                                            <a class="btn btn-danger text-light">Sil</a>
-                                                        </td>
+                                                        <td>
+                                                            <div class="d-flex">
+                                                                <a href="{{route('admin.officers.edit', $user->id)}}"
+                                                                   class="btn btn-info text-light">Düzenle</a>
+                                                                <form
+                                                                    id="yetkiliSilme"
+                                                                    action="{{route('admin.officers.destroy', $user->id)}}"
+                                                                    method="POST"
+                                                                >
+                                                                    @csrf
+                                                                    @method('DELETE')
+
+                                                                    <button type="submit"
+                                                                            class="btn btn-danger text-light"
+                                                                            onclick="yetkiliSilme()">Sil
+                                                                    </button>
+                                                                </form>
+                                                            </div>                                                        </td>
                                                     </tr>
-                                                @endif
                                             @endforeach
                                             </tbody>
                                         </table>
@@ -185,7 +157,7 @@
                         <div class="x_content">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <div class="card-box table-responsive">
+                                    <div class="card-box table-responsive overflow-x-hidden">
                                         <p class="text-muted font-13 m-b-30">
                                             İşlem yapmak istediğiniz işletmeyi aşağıdan seçebilir yada sağ taraftaki
                                             arama bölümünden arayarak bulabilirsiniz.
@@ -212,7 +184,7 @@
                                                     <td>{{$business->business_address}}</td>
                                                     <td>{{$business->business_phone}}</td>
                                                     <td>{{$business->quota}}</td>
-                                                    <td class="pull-right">
+                                                    <td>
                                                         <a class="btn btn-info text-light">Düzenle</a>
                                                         <a class="btn btn-danger text-light">Sil</a>
                                                     </td>
@@ -264,8 +236,7 @@
 
 
                                             <tbody>
-                                            @foreach($users as $user)
-                                                @if($user->roles[0]->id === 3)
+                                            @foreach($students as $user)
                                                     <tr>
                                                         <td>{{$user->id}}</td>
                                                         <td>{{$user->name}}</td>
@@ -274,12 +245,11 @@
                                                         <td>{{$user->email}}</td>
                                                         <td>21.11.2022</td>
                                                         <td>21.12.2022</td>
-                                                        <td class="pull-right">
+                                                        <td>
                                                             <a class="btn btn-info text-light">Düzenle</a>
                                                             <a class="btn btn-danger text-light">Sil</a>
                                                         </td>
                                                     </tr>
-                                                @endif
                                             @endforeach
                                             </tbody>
                                         </table>
@@ -306,33 +276,6 @@
         <!-- /footer content -->
     </div>
 </div>
-
-<!-- jQuery -->
-<script src="{{url('')}}/js/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="{{url('')}}/js/bootstrap.bundle.min.js"></script>
-<!-- FastClick -->
-<script src="{{url('')}}/js/fastclick.js"></script>
-<!-- NProgress -->
-<script src="{{url('')}}/js/nprogress.js"></script>
-<!-- bootstrap-progressbar -->
-<script src="{{url('')}}/js/bootstrap-progressbar.min.js"></script>
-<!-- iCheck -->
-<script src="{{url('')}}/js/icheck.min.js"></script>
-<!-- Skycons -->
-<script src="{{url('')}}/js/skycons.js"></script>
-<!-- DateJS -->
-<script src="{{url('')}}/js/date.js"></script>
-<!-- bootstrap-daterangepicker -->
-<script src="{{url('')}}/js/moment.min.js"></script>
-<script src="{{url('')}}/js/daterangepicker.js"></script>
-
-<!-- datatable -->
-<script src="{{url('')}}/js/jquery.dataTables.min.js"></script>
-
-<!-- Custom Theme Scripts -->
-<script src="{{url('')}}/js/custom.min.js"></script>
-<script src="{{url('')}}/js/bizim.min.js"></script>
-
+@include('admin.common.js')
 </body>
 </html>

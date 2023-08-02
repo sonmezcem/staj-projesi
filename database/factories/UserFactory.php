@@ -46,7 +46,7 @@ class UserFactory extends Factory
     {
         return $this->afterCreating(function (User $user) {
 
-            $user->assignRole('Öğrenci');
+            $user->assignRole('Öğrenci','Yetkili');
 
         });
     }
