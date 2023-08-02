@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Officer;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -28,6 +29,12 @@ class OfficerController extends Controller
 
     public function store(Request $request){
 
+/*        echo "<pre>";
+        print_r($request->all());
+        echo "</pre>";
+        exit();*/
+
+
         $validated = $request->validate(
             [
                 'username' => ['required', 'min:3'],
@@ -38,11 +45,30 @@ class OfficerController extends Controller
                 'email' => ['required', 'email'],
             ]);
 
+        $data = new User();
 
+        $characters = "abcdefghijklmnoprstuvyzABCDEFGHIJKLMNOPRSTUVYZ0123456789!+$&=";
 
-        echo "<pre>";
-        print_r($validated);
-        echo "</pre>";
+        $password = substr(str_shuffle($characters),0,9);
+
+        $validated['password'] = $password;
+
+        //buraya email gönderme kodları gelecek...
+
+        $user = User::create([
+            'username' => $validated['username'],
+            'name' => $validated['name'],
+            'surname' => $validated['surname'],
+            'phone' => $validated['phone'],
+            'email' => $validated['email'],
+            'password' => $validated['password'],
+            'status' => 1
+        ]);
+
+        $officer = Officer::create([
+            'officer_id' => $user->id,
+            'major' => $validated['major']
+        ]);
 
     }
 

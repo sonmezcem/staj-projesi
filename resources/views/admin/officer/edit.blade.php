@@ -32,38 +32,7 @@
         </div>
 
         <!-- top navigation -->
-        <div class="top_nav">
-            <div class="nav_menu">
-                <div class="nav toggle">
-                    <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                </div>
-                <nav class="nav navbar-nav">
-                    <ul class=" navbar-right">
-                        <li class="nav-item dropdown open" style="padding-left: 15px;">
-                            <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true"
-                               id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                                <img src="{{Auth::user()->profile_picture}}"
-                                     alt="">{{ Auth::user()->name . ' ' . Auth::user()->surname   }}
-                            </a>
-                            <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="profil.html"> Profil</a>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-
-                                    <x-dropdown-link :href="route('logout')"
-                                                     class="dropdown-item"
-                                                     onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                        {{ __('Çıkış Yap') }}
-                                    </x-dropdown-link>
-                                </form>
-                            </div>
-                        </li>
-
-                    </ul>
-                </nav>
-            </div>
-        </div>
+        @include('admin.common.top-navigation')
         <!-- /top navigation -->
 
         <!-- page content -->
@@ -100,13 +69,12 @@
                                     {{$user->name . " " . $user->surname }}
                                 </div>
                             </div>
-
-
                             <div class="form-group row">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-3">Adı</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
                                     <input type="text" class="form-control" name="name" value="{{$user->name}}">
                                     <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                                    @error('name') <span class="red">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -114,6 +82,7 @@
                                 <div class="col-md-9 col-sm-9 col-xs-9">
                                     <input type="text" class="form-control" name="surname" value="{{$user->surname}}">
                                     <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                                    @error('surname') <span class="red">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -121,6 +90,7 @@
                                 <div class="col-md-9 col-sm-9 col-xs-9">
                                     <input type="text" class="form-control" name="phone" value="{{$user->phone}}">
                                     <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                                    @error('phone') <span class="red">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -128,6 +98,7 @@
                                 <div class="col-md-9 col-sm-9 col-xs-9">
                                     <input type="email" class="form-control" name="email" value="{{$user->email}}">
                                     <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                                    @error('email') <span class="red">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -136,6 +107,7 @@
                                     <input type="password" class="form-control" name="password"
                                            placeholder="Lütfen, yeni parolayı giriniz.">
                                     <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                                    @error('password') <span class="red">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -144,6 +116,7 @@
                                     <input type="password" class="form-control" name="password_confirmation"
                                            placeholder="Lütfen, parolayı tekrar giriniz.">
                                     <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                                    @error('password_confirmation') <span class="red">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                             <div class="ln_solid"></div>

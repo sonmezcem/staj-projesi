@@ -18,12 +18,10 @@
 <!-- bootstrap-daterangepicker -->
 <script src="{{URL::to('js/moment.min.js')}}"></script>
 <script src="{{URL::to('/js/daterangepicker.js')}}"></script>
-
 <!-- datatable -->
 <script src="{{URL::to('/js/jquery.dataTables.min.js')}}"></script>
 <!-- validator -->
-<script src="{{URL::to('/js/multifield.js')}}"></script>
-<script src="{{URL::to('/js/validator.js')}}"></script>
+
 <!-- sweet alert-->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Custom Theme Scripts -->
