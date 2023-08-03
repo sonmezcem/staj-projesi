@@ -20,4 +20,8 @@ How To Change Password In Laravel 9 >> https://techtoolindia.com/how-to-change-p
 Laravel insert data to multiple relational tables with a single form >> https://laracasts.com/discuss/channels/general-discussion/laravel-insert-data-to-multiple-relational-tables-with-a-single-form
 laravel how to send email on new user registration only to admin email >> https://laracasts.com/discuss/channels/laravel/laravel-how-to-send-email-on-new-user-registration-only-to-admin-email
 Laravel send email notification when a user registers >> https://write.corbpie.com/laravel-send-email-notification-when-a-user-registers/
+Model Factory: Referencing a foreign key >> https://laracasts.com/discuss/channels/code-review/model-factory-referencing-a-foreign-key
+Laravel 5: how to create controller with method name >> https://stackoverflow.com/questions/55299303/laravel-5-how-to-create-controller-with-method-name
+How to detect first login in Laravel >> https://stackoverflow.com/questions/47401667/how-to-detect-first-login-in-laravel
+Search Relations whereHas >> https://laracasts.com/discuss/channels/eloquent/search-relations-wherehas
 

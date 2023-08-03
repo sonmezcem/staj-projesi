@@ -51,7 +51,7 @@
 
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>{{$user->name . " " . $user->surname . "'i"}}<small> düzenliyorsunuz...</small></h2>
+                        <h2>{{$user->name . " " . $user->surname . "'i"}} düzenliyorsunuz...</h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">

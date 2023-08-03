@@ -15,6 +15,10 @@
                                                                   height="45"></i> <span>Fırat Üniversitesi</span></a>
                 </div>
 
+                @if(isset($user->user_type) && $user->user_type === 3)
+
+                @endif
+
                 <div class="clearfix"></div>
 
                 <!-- menu profile quick info -->
@@ -68,8 +72,9 @@
                                 <th>Soyad</th>
                                 <th>Telefon</th>
                                 <th>Eposta</th>
-                                <th>Staj Başlangıç Tarihi</th>
-                                <th>Staj Bitiş Tarihi</th>
+                                <th>İşletme Adı</th>
+                                <td>Staj Başlama Tarihi</td>
+                                <td>Staj Bitiş Tarihi</td>
                                 <th>Düzenle</th>
                             </tr>
                             </thead>
@@ -78,17 +83,25 @@
 
                                 <tr>
                                     <th scope="row">{{$user->id}}</th>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$user->surname}}</td>
-                                    <td>{{$user->phone}}</td>
-                                    <td>{{$user->email}}</td>
+                                    <td>{{$user->user->name}}</td>
+                                    <td>{{$user->user->surname}}</td>
+                                    <td>{{$user->user->phone}}</td>
+                                    <td>{{$user->user->email}}</td>
+                                    <td>@if(isset($user->business->business_name))
+                                            {{$user->business->business_name}}
+                                        @else
+                                            {{"İşletmesi yok"}}
+                                        @endif
+                                    </td>
+                                    <td>{{$user->internship_start_date}}</td>
+                                    <td>{{$user->internship_end_date}}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="{{route('admin.officers.edit', $user->id)}}"
-                                               class="btn btn-info text-light">Düzenle</a>
+                                            <a href="{{route('admin.students.edit', $user->id)}}"
+                                               class="btn btn-primary text-light">İncele</a>
                                             <form
-                                                id="yetkiliSilme-{{$user->id}}"
-                                                action="{{route('admin.officers.destroy', $user->id)}}"
+                                                id="ogrenciSilme-{{$user->id}}"
+                                                action="{{route('admin.students.destroy', $user->id)}}"
                                                 method="POST"
                                             >
                                                 @csrf
@@ -96,7 +109,7 @@
 
                                                 <button type="submit"
                                                         class="btn btn-danger text-light"
-                                                        onclick="yetkiliSilme({{$user->id}})">Sil
+                                                        onclick="ogrenciSilme-({{$user->id}})">Sil
                                                 </button>
                                             </form>
                                         </div>

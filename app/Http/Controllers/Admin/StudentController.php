@@ -16,35 +16,25 @@ class StudentController extends Controller
     public function index()
     {
 
-        $students = Student::with('user.students')
+/*        $students = Student::with('user.user')
             ->with('business.business')
             ->get()
-            ->toArray()
-        ;
+        ;*/
 
-/*        $students = Student::with('user.students')
-            ->with('business.business')
-            ->get()
-            ->toArray()
-        ;
+        $status = 1;
 
-*/
+        $students = Student::query()
+            ->with('user.user', 'business.business')
+            ->whereHas('user',  function ($query) use ($status) {
+                return $query->where('status', 'LIKE', '%' . $status . '%');
+            })
+            ->paginate(10);
 
-
-        foreach ($students as $student){
-
-            echo "<pre>";
-            print_r($students);
-            echo "</pre>";
-
-        }
-
-
-        echo "<pre>";
+        /*echo "<pre>";
         print_r($students);
         echo "</pre>";
 
-        exit();
+        exit();*/
 
         return view('admin.student.index', compact('students'));
 
@@ -79,7 +69,19 @@ class StudentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        //$user = User::find($id);
+
+        $user = Student::query()
+            ->with('user.user', 'business.business')
+            ->whereHas('user',  function ($query) {
+                return $query->where('status', 'LIKE', '%' . 1 . '%');
+            })
+            ->get()
+            ->find($id)
+        ;
+
+        return view("admin.student.edit",compact('user'));
+
     }
 
     /**
@@ -95,7 +97,7 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        echo "tamam";
     }
 
 }

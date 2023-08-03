@@ -253,6 +253,7 @@
                                                 <th>Soyad</th>
                                                 <th>Telefon</th>
                                                 <th>Eposta</th>
+                                                <th>İşletme Adı</th>
                                                 <th>Staj Başlangıç Tarihi</th>
                                                 <th>Staj Bitiş Tarihi</th>
                                                 <th>Düzenle</th>
@@ -262,17 +263,39 @@
 
                                             <tbody>
                                             @foreach($students as $user)
+
                                                 <tr>
-                                                    <td>{{$user->id}}</td>
-                                                    <td>{{$user->name}}</td>
-                                                    <td>{{$user->surname}}</td>
-                                                    <td>{{$user->phone}}</td>
-                                                    <td>{{$user->email}}</td>
-                                                    <td>21.11.2022</td>
-                                                    <td>21.12.2022</td>
+                                                    <th scope="row">{{$user->id}}</th>
+                                                    <td>{{$user->user->name}}</td>
+                                                    <td>{{$user->user->surname}}</td>
+                                                    <td>{{$user->user->phone}}</td>
+                                                    <td>{{$user->user->email}}</td>
+                                                    <td>@if(isset($user->business->business_name))
+                                                            {{$user->business->business_name}}
+                                                        @else
+                                                            {{"İşletmesi yok"}}
+                                                        @endif
+                                                    </td>
+                                                    <td>{{$user->internship_start_date}}</td>
+                                                    <td>{{$user->internship_end_date}}</td>
                                                     <td>
-                                                        <a class="btn btn-info text-light">Düzenle</a>
-                                                        <a class="btn btn-danger text-light">Sil</a>
+                                                        <div class="d-flex">
+                                                            <a href="{{route('admin.students.edit', $user->id)}}"
+                                                               class="btn btn-primary text-light">İncele</a>
+                                                            <form
+                                                                id="ogrenciSilme-{{$user->id}}"
+                                                                action="{{route('admin.students.destroy', $user->id)}}"
+                                                                method="POST"
+                                                            >
+                                                                @csrf
+                                                                @method('DELETE')
+
+                                                                <button type="submit"
+                                                                        class="btn btn-danger text-light"
+                                                                        onclick="ogrenciSilme-({{$user->id}})">Sil
+                                                                </button>
+                                                            </form>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             @endforeach

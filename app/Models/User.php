@@ -50,15 +50,9 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function students(){
+    public function user(){
 
-        return $this->hasOne(Student::class,'user_id','id');
-
-    }
-
-    public function business(){
-
-        return $this->hasOne(Business::class,'user_id','id');
+        return $this->belongsTo(User::class);
 
     }
 }
