@@ -17,4 +17,10 @@ class Business extends Model
         'quota',
         'status',
     ];
+
+    public function business(){
+
+        return $this->belongsTo(Business::class);
+
+    }
 }

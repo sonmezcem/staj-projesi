@@ -15,10 +15,6 @@
                                                                   height="45"></i> <span>Fırat Üniversitesi</span></a>
                 </div>
 
-                @if(isset($user->user_type) && $user->user_type === 3)
-
-                @endif
-
                 <div class="clearfix"></div>
 
                 <!-- menu profile quick info -->
@@ -72,11 +68,13 @@
                                 <th>Soyad</th>
                                 <th>Telefon</th>
                                 <th>Eposta</th>
+                                <th>Staj Başlangıç Tarihi</th>
+                                <th>Staj Bitiş Tarihi</th>
                                 <th>Düzenle</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($users as $user)
+                            @foreach($students as $user)
 
                                 <tr>
                                     <th scope="row">{{$user->id}}</th>
@@ -108,7 +106,7 @@
                             </tbody>
                         </table>
                         <div class="d-flex justify-content-center">
-                            {{ $users->links()}}
+                            {{ $students->links()}}
                         </div>
                     </div>
                 </div>

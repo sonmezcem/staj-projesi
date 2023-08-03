@@ -133,7 +133,9 @@
                     </div>
                 </div>
             </div>
+{{--
             {{$user}}
+--}}
         </div>
     </div>
 </div>

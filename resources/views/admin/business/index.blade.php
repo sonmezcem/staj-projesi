@@ -15,10 +15,6 @@
                                                                   height="45"></i> <span>Fırat Üniversitesi</span></a>
                 </div>
 
-                @if(isset($user->user_type) && $user->user_type === 3)
-
-                @endif
-
                 <div class="clearfix"></div>
 
                 <!-- menu profile quick info -->
@@ -68,29 +64,29 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Ad</th>
-                                <th>Soyad</th>
-                                <th>Telefon</th>
-                                <th>Eposta</th>
+                                <th>İşletme Adı</th>
+                                <th>Adresi</th>
+                                <th>Telefonu</th>
+                                <th>Kontenjan</th>
                                 <th>Düzenle</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($users as $user)
+                            @foreach($businesses as $business)
 
                                 <tr>
-                                    <th scope="row">{{$user->id}}</th>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$user->surname}}</td>
-                                    <td>{{$user->phone}}</td>
-                                    <td>{{$user->email}}</td>
+                                    <th scope="row">{{$business->id}}</th>
+                                    <td>{{$business->business_name}}</td>
+                                    <td>{{$business->business_address}}</td>
+                                    <td>{{$business->business_phone}}</td>
+                                    <td>{{$business->business_quota}}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="{{route('admin.officers.edit', $user->id)}}"
+                                            <a href="{{route('admin.businesses.edit', $business->id)}}"
                                                class="btn btn-info text-light">Düzenle</a>
                                             <form
-                                                id="yetkiliSilme-{{$user->id}}"
-                                                action="{{route('admin.officers.destroy', $user->id)}}"
+                                                id="isletme-{{$business->id}}"
+                                                action="{{route('admin.businesses.destroy', $business->id)}}"
                                                 method="POST"
                                             >
                                                 @csrf
@@ -98,7 +94,7 @@
 
                                                 <button type="submit"
                                                         class="btn btn-danger text-light"
-                                                        onclick="yetkiliSilme({{$user->id}})">Sil
+                                                        onclick="isletmeSilme({{$business->id}})">Sil
                                                 </button>
                                             </form>
                                         </div>
@@ -108,7 +104,7 @@
                             </tbody>
                         </table>
                         <div class="d-flex justify-content-center">
-                            {{ $users->links()}}
+                            {{ $businesses->links()}}
                         </div>
                     </div>
                 </div>

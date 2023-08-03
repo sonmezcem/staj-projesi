@@ -42,7 +42,7 @@
                         <li class="nav-item dropdown open" style="padding-left: 15px;">
                             <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true"
                                id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="{{url('')}}/images/user.jpg{{--{{Auth::user()->profile_picture}}--}}"
+                                <img src="{{url('')}}/images/user.jpg{{--{{Auth::user()->profile_picture}}--}}"
                                      alt="">{{ Auth::user()->name . ' ' . Auth::user()->surname   }}
                             </a>
                             <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
@@ -73,6 +73,14 @@
 
             <div class="row">
                 <div class="col-md-12 col-sm-12 ">
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">×</span>
+                            </button>
+                            <strong>{{$message}}!</strong>
+                        </div>
+                    @endif
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>Yetkililer</h2>
@@ -108,31 +116,32 @@
 
                                             <tbody>
                                             @foreach($officers as $user)
-                                                    <tr>
-                                                        <td>{{$user->id}}</td>
-                                                        <td>{{$user->name}}</td>
-                                                        <td>{{$user->surname}}</td>
-                                                        <td>{{$user->phone}}</td>
-                                                        <td>{{$user->email}}</td>
-                                                        <td>
-                                                            <div class="d-flex">
-                                                                <a href="{{route('admin.officers.edit', $user->id)}}"
-                                                                   class="btn btn-info text-light">Düzenle</a>
-                                                                <form
-                                                                    id="yetkiliSilme"
-                                                                    action="{{route('admin.officers.destroy', $user->id)}}"
-                                                                    method="POST"
-                                                                >
-                                                                    @csrf
-                                                                    @method('DELETE')
+                                                <tr>
+                                                    <td>{{$user->id}}</td>
+                                                    <td>{{$user->name}}</td>
+                                                    <td>{{$user->surname}}</td>
+                                                    <td>{{$user->phone}}</td>
+                                                    <td>{{$user->email}}</td>
+                                                    <td>
+                                                        <div class="d-flex">
+                                                            <a href="{{route('admin.officers.edit', $user->id)}}"
+                                                               class="btn btn-info text-light">Düzenle</a>
+                                                            <form
+                                                                id="yetkiliSilme-{{$user->id}}"
+                                                                action="{{route('admin.officers.destroy', $user->id)}}"
+                                                                method="POST"
+                                                            >
+                                                                @csrf
+                                                                @method('DELETE')
 
-                                                                    <button type="submit"
-                                                                            class="btn btn-danger text-light"
-                                                                            onclick="yetkiliSilme()">Sil
-                                                                    </button>
-                                                                </form>
-                                                            </div>                                                        </td>
-                                                    </tr>
+                                                                <button type="submit"
+                                                                        class="btn btn-danger text-light"
+                                                                        onclick="yetkiliSilme({{$user->id}})">Sil
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                </tr>
                                             @endforeach
                                             </tbody>
                                         </table>
@@ -185,8 +194,24 @@
                                                     <td>{{$business->business_phone}}</td>
                                                     <td>{{$business->quota}}</td>
                                                     <td>
-                                                        <a class="btn btn-info text-light">Düzenle</a>
-                                                        <a class="btn btn-danger text-light">Sil</a>
+                                                        <div class="d-flex">
+                                                            <a href="{{route('admin.businesses.edit', $business->id)}}"
+                                                               class="btn btn-info text-light">Düzenle</a>
+                                                            <form
+                                                                id="isletme-{{$business->id}}"
+                                                                action="{{route('admin.businesses.destroy', $business->id)}}"
+                                                                method="POST"
+                                                            >
+                                                                @csrf
+                                                                @method('DELETE')
+
+                                                                <button type="submit"
+                                                                        class="btn btn-danger text-light"
+                                                                        onclick="isletmeSilme({{$business->id}})">Sil
+                                                                </button>
+                                                            </form>
+                                                        </div>
+
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -237,19 +262,19 @@
 
                                             <tbody>
                                             @foreach($students as $user)
-                                                    <tr>
-                                                        <td>{{$user->id}}</td>
-                                                        <td>{{$user->name}}</td>
-                                                        <td>{{$user->surname}}</td>
-                                                        <td>{{$user->phone}}</td>
-                                                        <td>{{$user->email}}</td>
-                                                        <td>21.11.2022</td>
-                                                        <td>21.12.2022</td>
-                                                        <td>
-                                                            <a class="btn btn-info text-light">Düzenle</a>
-                                                            <a class="btn btn-danger text-light">Sil</a>
-                                                        </td>
-                                                    </tr>
+                                                <tr>
+                                                    <td>{{$user->id}}</td>
+                                                    <td>{{$user->name}}</td>
+                                                    <td>{{$user->surname}}</td>
+                                                    <td>{{$user->phone}}</td>
+                                                    <td>{{$user->email}}</td>
+                                                    <td>21.11.2022</td>
+                                                    <td>21.12.2022</td>
+                                                    <td>
+                                                        <a class="btn btn-info text-light">Düzenle</a>
+                                                        <a class="btn btn-danger text-light">Sil</a>
+                                                    </td>
+                                                </tr>
                                             @endforeach
                                             </tbody>
                                         </table>

@@ -17,3 +17,7 @@ Laravel 10 Flash Message Example Tutorial >> https://www.itsolutionstuff.com/pos
 How To Get Users by Role/Permission >> https://github.com/spatie/laravel-permission/issues/682
 Laravel Pagination is showing weird arrows >> https://stackoverflow.com/questions/64002774/laravel-pagination-is-showing-weird-arrows
 How To Change Password In Laravel 9 >> https://techtoolindia.com/how-to-change-password-in-laravel-9
+Laravel insert data to multiple relational tables with a single form >> https://laracasts.com/discuss/channels/general-discussion/laravel-insert-data-to-multiple-relational-tables-with-a-single-form
+laravel how to send email on new user registration only to admin email >> https://laracasts.com/discuss/channels/laravel/laravel-how-to-send-email-on-new-user-registration-only-to-admin-email
+Laravel send email notification when a user registers >> https://write.corbpie.com/laravel-send-email-notification-when-a-user-registers/
+

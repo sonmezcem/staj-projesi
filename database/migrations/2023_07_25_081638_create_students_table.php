@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->integer('student_number');
             $table->date('internship_start_date');
-            $table->date('internship_finish_date');
-            $table->unsignedBigInteger('user_name_id');
-            $table->foreign('user_name_id')->references('id')->on('users');
-            $table->unsignedBigInteger('business_name_id');
-            $table->foreign('business_name_id')->references('id')->on('businesses');
+            $table->date('internship_end_date');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('business_id')->nullable();
+            $table->foreign('business_id')->references('id')->on('businesses');
             $table->timestamps();
         });
     }

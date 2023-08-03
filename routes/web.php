@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\OfficerController;
+use App\Http\Controllers\Admin\BusinessController;
+use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
@@ -50,6 +52,8 @@ Route::middleware(['auth', 'role:Yönetici'])->name('admin.')->prefix('admin')->
     Route::resource('/roles', RoleController::class);
     Route::resource('/permissions', PermissionController::class);
     Route::resource('/officers', OfficerController::class);
+    Route::resource('/businesses', BusinessController::class);
+    Route::resource('/students', StudentController::class);
 });
 
 Route::get('/my-captcha', [HomeController::class, 'myCaptcha'])->name('myCaptcha');

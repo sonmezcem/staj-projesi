@@ -44,68 +44,52 @@
 
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Yeni kullanıcı oluşturuyorsunuz...</h2>
+                        <h2>Yeni işletme oluşturuyorsunuz...</h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
                         <br>
                         <form class="form-horizontal form-label-left" method="POST"
-                              action="{{ route('admin.officers.store') }}">
+                              action="{{ route('admin.businesses.store') }}">
                             @csrf
                             <div class="form-group row">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-3">Kullanıcı adı</label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-3">İşletme adı</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
-                                    <input type="text" class="form-control" name="username" value="{{old('username')}}">
+                                    <input type="text" class="form-control" name="business_name" value="{{old('business_name')}}">
                                     <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-                                    @error('username') <span class="red">{{ $message }}</span> @enderror
+                                    @error('business_name') <span class="red">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-3">Adı</label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-3">İşletme Adresi</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
-                                    <input type="text" class="form-control" name="name" value="{{old('name')}}">
+                                    <input type="text" class="form-control" name="business_address" value="{{old('business_address')}}">
                                     <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-                                    @error('name') <span class="red">{{ $message }}</span> @enderror
+                                    @error('business_address') <span class="red">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-3">Soyadı</label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-3">İşletme Telefonu</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
-                                    <input type="text" class="form-control" name="surname" value="{{old('surname')}}">
+                                    <input type="number" class="form-control" name="business_phone" value="{{old('business_phone')}}">
                                     <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-                                    @error('surname') <span class="red">{{ $message }}</span> @enderror
+                                    @error('business_phone') <span class="red">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-3">Görevi</label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-3">Kontenjan</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
-                                    <input type="text" class="form-control" name="major" value="{{old('major')}}">
+                                    <input type="number" class="form-control" name="quota" value="{{old('quota')}}">
                                     <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-                                    @error('major') <span class="red">{{ $message }}</span> @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-3">Telefon</label>
-                                <div class="col-md-9 col-sm-9 col-xs-9">
-                                    <input type="number" class="form-control" name="phone" value="{{old('phone')}}">
-                                    <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-                                    @error('phone') <span class="red">{{ $message }}</span> @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-3">Eposta</label>
-                                <div class="col-md-9 col-sm-9 col-xs-9">
-                                    <input type="email" class="form-control" name="email" value="{{old('email')}}">
-                                    <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-                                    @error('email') <span class="red">{{ $message }}</span> @enderror
+                                    @error('quota') <span class="red">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
 
                             <div class="form-group row">
                                 <div class="col-md-9 offset-md-3">
-                                    <a href="{{ route('admin.officers.index')}}" type="" class="btn btn-primary flex">İptal</a>
-                                    <button type="submit" class="btn btn-success">Yetkili Oluştur</button>
+                                    <a href="{{ route('admin.businesses.index')}}" type="" class="btn btn-primary flex">İptal</a>
+                                    <button type="submit" class="btn btn-success">İşletme Oluştur</button>
                                 </div>
                             </div>
 

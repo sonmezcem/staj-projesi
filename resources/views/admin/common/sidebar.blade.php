@@ -12,17 +12,17 @@
                 </ul>
 
             </li>
+            <li><a><i class="fa fa-exclamation"></i>İşletmeler<span
+                        class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+                <li><a href="{{URL::to('admin/businesses')}}">Tüm işletmeler</a></li>
+                <li><a href="{{URL::to('admin/businesses/create')}}">İşletme Ekle</a></li>
+                </ul>
+            </li>
             <li><a><i class="fa fa-exclamation"></i>Öğrenciler<span
                         class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="ogrenci-tablo.html">Öğrenci Düzenleme</a></li>
-                </ul>
-
-            </li>
-            <li><a><i class="fa fa-exclamation"></i>İşletmeler<span
-                        class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="isletme-tablo.html">İşletme Düzenleme</a></li>
                 </ul>
             </li>
         </ul>

@@ -1,0 +1,4 @@
+Dinamik tablolarda tüm kayıtları göster.
+Email gönderirken dinamik bir şekilde gönderim ayarlanmadı.
+admin'de yetkili silindiğinde başarılı bir şekilde bilgi mesajı gitmiyor.
+İşletmenin kontenjan bölümünde yer alan sayıya tıklandığında hangi öğrenciler o işletmede staj yapıyorsa görüntülenebilecek.

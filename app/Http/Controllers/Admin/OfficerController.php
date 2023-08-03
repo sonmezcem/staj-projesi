@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\Console\Input\Input;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Mail;
 
 class OfficerController extends Controller
 {
@@ -45,15 +45,22 @@ class OfficerController extends Controller
                 'email' => ['required', 'email'],
             ]);
 
-        $data = new User();
-
         $characters = "abcdefghijklmnoprstuvyzABCDEFGHIJKLMNOPRSTUVYZ0123456789!+$&=";
-
         $password = substr(str_shuffle($characters),0,9);
-
         $validated['password'] = $password;
 
-        //buraya email gönderme kodları gelecek...
+/*        Mail::from('')
+            ->from('deneme@deneme.com', 'Me')
+            ->to('cemsonmezapi@gmail.com','cemsonmezapi@gmail.com')
+            ->from('')
+            ->subject('kullanici bilgileriniz')
+        ;*/
+
+        Mail::send('admin.mail' ,compact('validated','password'), function ($message) {
+            $message->to('staj@trends.com.tr')->subject('Hesabınız Oluşturuldu');
+            $message->from('staj@trends.com.tr', 'Staj Takip Sistemi Yönetim');
+        });
+
 
         $user = User::create([
             'username' => $validated['username'],
@@ -70,6 +77,11 @@ class OfficerController extends Controller
             'major' => $validated['major']
         ]);
 
+        $users = User::whereHas("roles", function($q){ $q->where("name", "Yetkili")->where('status', 1); })->paginate(10);
+
+        return view('admin.officer.index', compact('users'));
+
+
     }
 
     public function show(){
@@ -79,8 +91,6 @@ class OfficerController extends Controller
     }
 
     public function update($id, User $user, Request $request){
-
-
 
         if ($request->password == '') {
 
@@ -99,20 +109,10 @@ class OfficerController extends Controller
                 'phone' => ['phone:TR'],
                 'password' => ['required','confirmed'],
             ]);
+            $data['password'] = bcrypt($data['password']);
         }
-        //                'password-confirm' => ['required']
 
-        User::whereId($id)->update([
-            'password' => Hash::make($request->password)
-        ]);
-/*
         $user->where('id', $id)->update($data);
-
-        User::create($request->all($data)*/
-
-        $users = User::whereHas("roles", function($q){ $q->where("name", "Yetkili")->where('status', 1); })->get();
-        // $users = User::whereHas("roles", function($q){ $q->where("name", "Yetkili"); })->where("status", 1)->get();
-
 
         return back()->with('success','Kullanıcı başarılı bir şekilde düzenlendi!');
 
@@ -139,11 +139,4 @@ class OfficerController extends Controller
         return back()->with('success','Kullanıcı başarılı bir şekilde silindi!');
 
     }
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
-
-
-
 }
