@@ -112,7 +112,10 @@
                             <div class="form-group row">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-3">Parola gönder</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
-                                    <button class="btn btn-secondary">Parola gönder</button>
+                                    <div class="btn btn-secondary text-white" onclick="parolaGonder({{$user->id}})">
+                                        Parola gönder
+                                    </div>
+                                    <div id="parolaDurumu" class="d-inline">Buraya yazi gelecek</div>
                                 </div>
                             </div>
                             @if(isset($user->business))
@@ -129,9 +132,24 @@
                                 <div class="form-group row">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-3">İşletme ara</label>
                                     <div class="col-md-9 col-sm-9 col-xs-9">
-                                        <input type="text" class="form-control" name="surname"
-                                               value="">
-                                        <a href="#"><span class="fa fa-search form-control-feedback right" aria-hidden="true"></span></a>
+                                        <input type="text" class="form-control" name="business"
+                                               value="" id="isletme" disabled>
+                                        <a href="#"><span class="fa fa-search form-control-feedback right"
+                                                          aria-hidden="true"></span></a>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">İşletme ara</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+
+                                        <input type="text" id="search" class="live-search-box"
+                                               placeholder="İşletme arayınız"/>
+
+                                        <ul class="live-search-list">
+
+                                        </ul>
+                                        <a href="#"><span class="fa fa-search form-control-feedback right"
+                                                          aria-hidden="true"></span></a>
                                     </div>
                                 </div>
                             @endif
@@ -139,9 +157,14 @@
                             <div class="form-group row">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-3">Staj Başlangıç Tarihi</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
-                                    <input type="date" class="form-control" name="internship_start_date"
-                                           value="{{$user->internship_start_date}}">
-                                    <span class="fa form-control-feedback right" aria-hidden="true"></span>
+                                    <input
+                                        type="text"
+                                        id="internship_start_date"
+                                        class="form-control"
+                                        name="internship_start_date"
+                                        value="{{$user->internship_start_date->format('d/m/Y')}}"
+                                    >
+                                    <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
                                     @error('internship_start_date') <span class="red">{{ $message }}</span> @enderror
                                 </div>
                             </div>
@@ -149,12 +172,52 @@
                             <div class="form-group row">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-3">Staj Bitiş Tarihi</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
-                                    <input type="date" class="form-control" name="internship_end_date"
-                                           value="{{$user->internship_end_date}}">
-                                    <span class="fa form-control-feedback right" aria-hidden="true"></span>
+                                    <input
+                                        type="text"
+                                        id="internship_end_date"
+                                        class="form-control"
+                                        name="internship_end_date"
+                                        value="{{$user->internship_end_date->format('d/m/Y')}}"
+                                    >
+                                    <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
                                     @error('internship_end_date') <span class="red">{{ $message }}</span> @enderror
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-3">Belgeler</label>
+                                <div class="col-md-9 col-sm-9 col-xs-9">
+                                    <a href="#" class="btn border">Öğrenci Belgesi</a>
+                                    <a href="#" class="btn border">Öğrenci Belgesi</a>
+                                    <a href="#" class="btn border">Öğrenci Belgesi</a>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-3">Onay durumu</label>
+                                <div class="col-md-9 col-sm-9 col-xs-9">
+                                    <input type="radio" class="radio" name="approval-radio" value="approve" id="approve"
+                                           checked>Onayla
+                                    <input type="radio" class="radio" name="approval-radio" value="dismiss" id="reject">Reddet
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-3">Red gerekçesi</label>
+                                <div class="col-md-9 col-sm-9 col-xs-9">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        name="rejection-reason"
+                                        placeholder=""
+                                        id="rejection-reason"
+                                        disabled
+                                    >
+                                    @error('rejection-reason') <span class="red">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
+
 
 
                             <div class="ln_solid"></div>
@@ -193,6 +256,91 @@
 </div>
 
 @include('admin.common.js')
+<script>
+    function parolaGonder(id) {
+        var formData = {
+            id: id
+        };
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type: "POST",
+            url: "{{URL('/admin/students/password-reset/')}}" + "/" + id,
+            data: formData,
+            dataType: "json",
+            encode: true,
+        }).done(function (data) {
+            console.log(data);
+        });
+        Swal.fire({
+            icon: 'success',
+            text: 'Yeni parola gönderildi!',
+            confirmButtonText: 'Tamam'
+        })
+    }
+</script>
+
+<script>
+    $("#search").on("keyup", function () {
+        var formData = {
+            search: $(this).val()
+        };
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type: "GET",
+            url: "{{URL::to('/admin/student-search')}}",
+            data: formData,
+            dataType: "json",
+            encode: true,
+        }).done(function (data) {
+            sayac = 0;
+            if (data)
+                $.each(data, function (index, val) {
+                    $('.live-search-list').empty();
+                    $('.live-search-list').append($('<li>').text('İşletme: ' + data.business_name));
+                    $('#isletme').val(data.business_name)
+                    //'id: ' + data.id + ',
+                });
+            console.log(data);
+
+        });
+    });
+
+    $(function () {
+        $('#internship_start_date, #internship_end_date').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            locale: {
+                format: 'DD/MM/YYYY'
+            }
+        });
+    })
+
+    $('#reject').change(
+        function () {
+            if ($(this).is(':checked') && $(this).val() == 'dismiss') {
+                $('#rejection-reason').attr('placeholder','Lütfen, red gerekçesini giriniz');
+                $('#rejection-reason').prop( "disabled", false );
+            }
+        })
+    $('#approve').change(
+        function () {
+            if ($(this).is(':checked')) {
+                $('#rejection-reason').attr('placeholder','');
+                $('#rejection-reason').prop( "disabled", true );
+            }
+        })
+
+</script>
+<script>
+</script>
 
 </body>
 </html>

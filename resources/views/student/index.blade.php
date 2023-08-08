@@ -7,66 +7,22 @@
     <div class="main_container">
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
-                <div class="navbar nav_title" style="border: 0;">
+                <div class="navbar nav_title" style="border: 3;">
                     <a href="{{url('')}}" class="site_title"><img src="{{url('')}}/images/firat_logo.gif" width="45"
                                                                   height="45"></i> <span>Fırat Üniversitesi</span></a>
                 </div>
 
-                @if(isset($user->user_type) && $user->user_type === 3)
-
-                @endif
 
                 <div class="clearfix"></div>
 
                 <!-- menu profile quick info -->
-                <div class="profile clearfix">
-                    <div class="profile_pic">
-                        <img src="{{url('')}}/images/user.jpg" alt="..." class="img-circle profile_img">
-                    </div>
-                    <div class="profile_info">
-                        <span>Hoşgeldiniz,</span>
-                        <h2>{{ Auth::user()->name . ' ' . Auth::user()->surname   }} {{--{{$user->name . ' ' . $user->surname}}--}}</h2>
-                    </div>
-                </div>
-
+                @include('student.common.menu-profile')
                 <!-- /menu profile quick info -->
 
                 <br/>
 
                 <!-- sidebar menu -->
-                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                    <div class="menu_section">
-                        <h3>Menu</h3>
-                        <ul class="nav side-menu">
-                            <li><a><i class="fa fa-home"></i> Anasayfa <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="bos-yetki.html">Tüm Tablolar</a></li>
-                                </ul>
-                            </li>
-                            <li><a><i class="fa fa-edit"></i> Yetkililer <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="yetkili-tablo.html">Yetkili Düzenleme</a></li>
-                                    <li><a href="yetkili-ekle.html">Yetkili Ekle</a></li>
-
-                                </ul>
-
-                            </li>
-                            <li><a><i class="fa fa-exclamation"></i>Öğrenciler<span
-                                        class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="ogrenci-tablo.html">Öğrenci Düzenleme</a></li>
-                                </ul>
-
-                            </li>
-                            <li><a><i class="fa fa-exclamation"></i>İşletmeler<span
-                                        class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="isletme-tablo.html">İşletme Düzenleme</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                @include('student.common.sidebar')
                 <!-- /sidebar menu -->
 
 
@@ -74,38 +30,7 @@
         </div>
 
         <!-- top navigation -->
-        <div class="top_nav">
-            <div class="nav_menu">
-                <div class="nav toggle">
-                    <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                </div>
-                <nav class="nav navbar-nav">
-                    <ul class=" navbar-right">
-                        <li class="nav-item dropdown open" style="padding-left: 15px;">
-                            <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true"
-                               id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                                <img src="{{Auth::user()->profile_picture}}"
-                                     alt="">{{ Auth::user()->name . ' ' . Auth::user()->surname   }}
-                            </a>
-                            <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="profil.html"> Profil</a>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-
-                                    <x-dropdown-link :href="route('logout')"
-                                                     class="dropdown-item"
-                                                     onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                        {{ __('Çıkış Yap') }}
-                                    </x-dropdown-link>
-                                </form>
-                            </div>
-                        </li>
-
-                    </ul>
-                </nav>
-            </div>
-        </div>
+        @include('student.common.top-navigation')
         <!-- /top navigation -->
 
         <!-- page content -->
@@ -113,9 +38,67 @@
         <div class="right_col" role="main">
 
             <div class="row">
-
-
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Bilgilerim</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br>
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-2 col-sm-2 ">Adı :</label>
+                            <div class="col-md-10 col-sm-10 ">
+                                <input type="text" class="form-control" readonly="readonly"
+                                       placeholder="{{ Auth::user()->name}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-2 col-sm-2 ">Soyadı :</label>
+                            <div class="col-md-10 col-sm-10 ">
+                                <input type="text" class="form-control" readonly="readonly"
+                                       placeholder="{{ Auth::user()->surname}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-2 col-sm-2 ">Telefon Numarası :</label>
+                            <div class="col-md-10 col-sm-10 ">
+                                <input type="text" class="form-control" readonly="readonly"
+                                       placeholder="{{ Auth::user()->phone}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-2 col-sm-2  ">E-Posta Adresi :</label>
+                            <div class="col-md-10 col-sm-10 ">
+                                <input type="text" class="form-control" readonly="readonly"
+                                       placeholder="{{ Auth::user()->email}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="x_panel col-lg-3">
+                    Staj Durumu
+                </div>
+                @if(isset($student[0]) && $student[0]->internship_status == 1)
+                    <div class="x_panel col-lg-9 alert alert-info">
+                        <i class="fa fa-spinner" aria-hidden="true"></i>
+                        <strong>Staj başvurunuz onay için bekleniyor. Onaylandığında eposta ile
+                            bilgilendirileceksiniz.</strong>
+                    </div>
+                @elseif(isset($student[0]) && $student[0]->internship_status == 2)
+                    <div class="x_panel col-lg-9 alert alert-success">
+                        <strong>Staj başvurunuz onaylandı. {{$student[0]->internship_start_date->format('d M Y')}}
+                            tarihinde stajınız başlayacaktır.</strong>
+                    </div>
+                @else
+                    <div class="x_panel col-lg-9 alert alert-danger">
+                        <strong>Staj başvurunuz red edildi. Nedenini öğrenmek için <a href="#">tıklayınız.</a></strong>
+                    </div>
+                @endif
             </div>
+            {{--<div>
+                --}}{{--{{$student}}--}}{{--
+            </div>--}}
+
         </div>
 
 
@@ -132,32 +115,7 @@
     </div>
 </div>
 
-<!-- jQuery -->
-<script src="{{url('')}}/js/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="{{url('')}}/js/bootstrap.bundle.min.js"></script>
-<!-- FastClick -->
-<script src="{{url('')}}/js/fastclick.js"></script>
-<!-- NProgress -->
-<script src="{{url('')}}/js/nprogress.js"></script>
-<!-- bootstrap-progressbar -->
-<script src="{{url('')}}/js/bootstrap-progressbar.min.js"></script>
-<!-- iCheck -->
-<script src="{{url('')}}/js/icheck.min.js"></script>
-<!-- Skycons -->
-<script src="{{url('')}}/js/skycons.js"></script>
-<!-- DateJS -->
-<script src="{{url('')}}/js/date.js"></script>
-<!-- bootstrap-daterangepicker -->
-<script src="{{url('')}}/js/moment.min.js"></script>
-<script src="{{url('')}}/js/daterangepicker.js"></script>
-
-<!-- datatable -->
-<script src="{{url('')}}/js/jquery.dataTables.min.js"></script>
-
-<!-- Custom Theme Scripts -->
-<script src="{{url('')}}/js/custom.min.js"></script>
-<script src="{{url('')}}/js/bizim.min.js"></script>
+@include('student.common.js')
 
 </body>
 </html>

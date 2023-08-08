@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\BusinessController;
+use App\Http\Controllers\Admin\DocumentController;
+use App\Http\Controllers\Admin\DocumentTypesController;
+use App\Http\Controllers\Admin\OfficerController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
-use App\Http\Controllers\Admin\OfficerController;
-use App\Http\Controllers\Admin\BusinessController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
@@ -43,9 +45,9 @@ Route::get('/officer', function () {
     return view('officer.index');
 })->middleware('auth', 'role:Yetkili')->name('officer.index');
 
-Route::get('/student', function () {
+/*Route::get('/student', function () {
     return view('student.index');
-})->middleware('auth', 'role:Öğrenci')->name('student.index');
+})->middleware('auth', 'role:Öğrenci')->name('student.index');*/
 
 Route::middleware(['auth', 'role:Yönetici'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [IndexController::class, 'index'])->name('index');
@@ -53,8 +55,20 @@ Route::middleware(['auth', 'role:Yönetici'])->name('admin.')->prefix('admin')->
     Route::resource('/permissions', PermissionController::class);
     Route::resource('/officers', OfficerController::class);
     Route::resource('/businesses', BusinessController::class);
+    Route::post('/students/password-reset/{id}', 'App\Http\Controllers\Admin\StudentController@passwordReset');
     Route::resource('/students', StudentController::class);
+    Route::get('/student-search', [StudentController::class, 'searchBusiness']);
+    Route::resource('/documents', DocumentController::class);
+    Route::resource('/documenttypes', DocumentTypesController::class);
 });
+
+Route::middleware(['auth', 'role:Öğrenci'])->name('student.')->prefix('student')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Student\StudentController::class, 'index'])->name('index');
+    Route::get('/application-form', [\App\Http\Controllers\Student\StudentController::class, 'applicationForm']);
+    Route::resource('/students', \App\Http\Controllers\Student\StudentController::class);
+
+});
+
 
 Route::get('/my-captcha', [HomeController::class, 'myCaptcha'])->name('myCaptcha');
 Route::post('/my-captcha', [HomeController::class, 'myCaptchaPost'])->name('myCaptcha.post');

@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('document_types', function (Blueprint $table) {
             $table->id();
-            $table->string('document_type', 100);
-            $table->string('file_ext', 5);
+            $table->string('document_type', 100)->unique();
+            $table->string('document_slug', 100)->unique();
+            //$table->string('file_ext', 5);
+            $table->boolean('status');
             $table->timestamps();
         });
     }

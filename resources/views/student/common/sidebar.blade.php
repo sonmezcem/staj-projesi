@@ -2,11 +2,12 @@
     <div class="menu_section">
         <h3>Menu</h3>
         <ul class="nav side-menu">
-            <li><a href="{{URL::to('admin')}}"><i class="fa fa-home"></i> Anasayfa </a>
+            <li><a href="{{URL::to('student')}}"><i class="fa fa-home"></i> Anasayfa </a>
             </li>
+{{--
             <li><a><i class="fa fa-user"></i> Yetkililer <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                    <li><a href="{{URL::to('admin/officers')}}">Tüm Yetkililer</a></li>
+                    <li><a href="{{URL::to('student/internship-application')}}">Tüm Yetkililer</a></li>
                     <li><a href="{{URL::to('admin/officers/create')}}">Yetkili Ekle</a></li>
 
                 </ul>
@@ -33,6 +34,7 @@
                     <li><a href="{{URL::to('admin/documenttypes/create')}}">Yeni Döküman Türü Ekle</a></li>
                 </ul>
             </li>
+--}}
 
         </ul>
     </div>

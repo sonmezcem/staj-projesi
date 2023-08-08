@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Business;
 use App\Models\Student;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -16,16 +15,16 @@ class StudentController extends Controller
     public function index()
     {
 
-/*        $students = Student::with('user.user')
-            ->with('business.business')
-            ->get()
-        ;*/
+        /*        $students = Student::with('user.user')
+                    ->with('business.business')
+                    ->get()
+                ;*/
 
         $status = 1;
 
         $students = Student::query()
             ->with('user.user', 'business.business')
-            ->whereHas('user',  function ($query) use ($status) {
+            ->whereHas('user', function ($query) use ($status) {
                 return $query->where('status', 'LIKE', '%' . $status . '%');
             })
             ->paginate(10);
@@ -73,14 +72,13 @@ class StudentController extends Controller
 
         $user = Student::query()
             ->with('user.user', 'business.business')
-            ->whereHas('user',  function ($query) {
+            ->whereHas('user', function ($query) {
                 return $query->where('status', 'LIKE', '%' . 1 . '%');
             })
             ->get()
-            ->find($id)
-        ;
+            ->find($id);
 
-        return view("admin.student.edit",compact('user'));
+        return view("admin.student.edit", compact('user'));
 
     }
 
@@ -98,6 +96,30 @@ class StudentController extends Controller
     public function destroy(string $id)
     {
         echo "tamam";
+    }
+
+    public function passwordReset($id)
+    {
+
+        echo "tamam";
+
+    }
+
+    public function searchBusiness(Request $request)
+    {
+
+
+        if ($request->ajax()) {
+            $businesses = Business::where('business_name', 'LIKE', '%' . $request->search . "%")->get();
+        }
+
+        if (isset($businesses[0])) {
+            $json = json_encode(array('id' => $businesses[0]->id, 'business_name' => $businesses[0]->business_name));
+        } else {
+            $json = json_encode(array('bos' => 0));;
+        }
+        return $json;
+
     }
 
 }

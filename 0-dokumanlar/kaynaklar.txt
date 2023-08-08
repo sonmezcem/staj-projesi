@@ -24,4 +24,20 @@ Model Factory: Referencing a foreign key >> https://laracasts.com/discuss/channe
 Laravel 5: how to create controller with method name >> https://stackoverflow.com/questions/55299303/laravel-5-how-to-create-controller-with-method-name
 How to detect first login in Laravel >> https://stackoverflow.com/questions/47401667/how-to-detect-first-login-in-laravel
 Search Relations whereHas >> https://laracasts.com/discuss/channels/eloquent/search-relations-wherehas
+How to change confirm button of Swal >> https://stackoverflow.com/questions/69882365/how-to-change-confirm-button-of-swal
+Create Laravel Search Box With Live Results Using AJAX jQuery https://www.cloudways.com/blog/live-search-laravel-ajax/
+Laravel update model with unique validation rule for attribute >> https://stackoverflow.com/a/22406205
+How do I disable/enable a form element? >> https://learn.jquery.com/using-jquery-core/faq/how-do-i-disable-enable-a-form-element/
+Change placeholder text >> https://stackoverflow.com/a/13506703
+Jquery If radio button is checked >> https://stackoverflow.com/a/6654640
+How to extract month, day from created_at column in Laravel? >> https://stackoverflow.com/questions/45138724/how-to-extract-month-day-from-created-at-column-in-laravel
+How to change the date range picker's date format? >> https://stackoverflow.com/a/32801191
+Validating multiple files in array >> https://stackoverflow.com/a/38327539
+PHP get the current month of a date >> https://stackoverflow.com/questions/20659389/php-get-the-current-month-of-a-date
+Laravel 5 - get ID by other field properly >> https://stackoverflow.com/a/30628620
+Generate slugs when saving Eloquent models >> https://github.com/spatie/laravel-sluggable
+Laravel 9 File Upload Tutorial: Validation + Store in Database >> https://www.positronx.io/laravel-file-upload-with-validation/
+Method Illuminate\Http\UploadedFile::save does not exist. >> https://laracasts.com/discuss/channels/laravel/method-illuminatehttpuploadedfilesave-does-not-exist
+Laravel getClientOriginalName inside foreach loop >> https://stackoverflow.com/a/37182263
+[L5] Call to undefined method Illuminate\Validation\Validator::make() >> https://laracasts.com/discuss/channels/general-discussion/l5-call-to-undefined-method-illuminatevalidationvalidatormake
 

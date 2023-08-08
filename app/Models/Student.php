@@ -14,9 +14,18 @@ class Student extends Model
         'student_number',
         'internship_start_date',
         'internship_end_date',
+        'internship_status',
+        'internship_type',
         'user_id',
         'business_id',
     ];
+
+    protected $casts = [
+        'expired_at'=>'datetime',
+        'internship_start_date' => 'date',
+        'internship_end_date' => 'date',
+    ];
+
 
     public function user(){
 

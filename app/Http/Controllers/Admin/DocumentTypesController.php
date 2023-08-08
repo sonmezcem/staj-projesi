@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Business;
+use App\Models\DocumentTypes;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Bus;
 
-class BusinessController extends Controller
+class DocumentTypesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $businesses = Business::where('status', 1)->paginate(10);
+        $documentTypes = DocumentTypes::all()->where('status',1);
 
-        return view('admin.business.index', compact('businesses'));
+        return view('admin.documenttypes.index', compact('documentTypes'));
+
 
     }
 
@@ -25,8 +25,7 @@ class BusinessController extends Controller
      */
     public function create()
     {
-        return view('admin.business.create');
-
+        return view('admin.documenttypes.create');
     }
 
     /**
@@ -36,19 +35,17 @@ class BusinessController extends Controller
     {
         $validated = $request->validate(
             [
-                'business_name' => ['required', 'min:3'],
-                'business_address' => ['required'],
-                'business_phone' => ['required', 'numeric'],
-                'quota' => ['required','numeric'],
+                'document_type' => ['required', 'unique:document_types,document_type']
             ]);
 
         $validated['status'] = 1;
+        $validated['document_slug'] = $validated['document_type'];
 
-        Business::create($validated);
+        DocumentTypes::create($validated);
 
-        $businesses = Business::where('status', 1)->paginate(10);
+        $documentTypes = DocumentTypes::all()->where('status',1);
 
-        return view('admin.business.index', compact('businesses'))->with('success','İşletme başarılı bir şekilde eklendi!');
+        return view('admin.documenttypes.index', compact('documentTypes'))->with('success','Döküman türü başarılı bir şekilde eklendi!');
 
     }
 
@@ -65,9 +62,9 @@ class BusinessController extends Controller
      */
     public function edit(string $id)
     {
-        $business = Business::find($id);
+        $documentType = DocumentTypes::find($id);
 
-        return view("admin.business.edit",compact('business'));
+        return view("admin.documenttypes.edit",compact('documentType'));
 
     }
 
@@ -76,19 +73,16 @@ class BusinessController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
         $validated = $request->validate(
             [
-                'business_name' => ['required'],
-                'business_address' => ['required'],
-                'business_phone' => ['required', 'phone:tr'],
-                'quota' => ['required', 'numeric'],
-            ]
+                'document_type' => ['required'],
+                ]
         );
 
-        Business::where('id', $id)->update($validated);
+        DocumentTypes::where('id', $id)->update($validated);
 
-        return back()->with('success','İşletme başarılı bir şekilde düzenlendi!');
+        return back()->with('success','Döküman türü başarılı bir şekilde düzenlendi!');
+
 
     }
 
@@ -98,7 +92,7 @@ class BusinessController extends Controller
     public function destroy(string $id)
     {
         $statusUpdate = ['status' => 0];
-        $business = new Business();
+        $business = new DocumentTypes();
         $business->where('id', $id)->update($statusUpdate);
 
         return back()->with('success','İşletme başarılı bir şekilde silindi!');
