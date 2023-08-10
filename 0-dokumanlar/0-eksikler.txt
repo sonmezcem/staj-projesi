@@ -7,4 +7,14 @@ Staj durumu red edilmiş öğrenciler için menüde yer yok.
 Staj başvurusu onaylandığında veya red edildiğinde eposta ile bilgilendirme yapılması.
 Öğrenci sayfasında internship_status === 3'de ki bağlantının yapılması.
 Öğrencinin belge türü seçip yüklemesi.
-
+Tablo kullanıcı düzenleme güncelleye tıklayınca tablolara atsın
+Öğrenci silinmiyor
+Öğrenci İncelede iptale basınca tüm yetkililere atıyor
+Öğrenci incele güncelleme yapmıyor
+Tüm döküman türleri çalışmıyor
+Profil Kısmı Çalışmıyor
+Tabloların sağ üstündeki yetkili, işletme ve öğrenci ekleme + butonu çalışmıyor.
+Hata uyarıları ingilizce
+Şifremi Unuttum fırat logosuna verilen link çalışmıyor
+İşletme Eklenmiyor
+Yetkili Eklenmiyor (böyle bir ana bilgisayar yok hatası veriyor)
