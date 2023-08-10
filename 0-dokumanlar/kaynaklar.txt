@@ -40,4 +40,17 @@ Laravel 9 File Upload Tutorial: Validation + Store in Database >> https://www.po
 Method Illuminate\Http\UploadedFile::save does not exist. >> https://laracasts.com/discuss/channels/laravel/method-illuminatehttpuploadedfilesave-does-not-exist
 Laravel getClientOriginalName inside foreach loop >> https://stackoverflow.com/a/37182263
 [L5] Call to undefined method Illuminate\Validation\Validator::make() >> https://laracasts.com/discuss/channels/general-discussion/l5-call-to-undefined-method-illuminatevalidationvalidatormake
+How to get the last inserted ID using Laravel Eloquent? >> https://www.tutorialspoint.com/how-to-get-the-last-inserted-id-using-laravel-eloquent
+Query builder not inserting timestamps >> https://stackoverflow.com/a/33452275
+Laravel Carbon failed to parse time string error >> https://stackoverflow.com/a/67920892
+How to Validate an array in Laravel >> https://stackoverflow.com/questions/66975123/how-to-validate-an-array-in-laravel
+laravel file does not exist or is not readable >> https://stackoverflow.com/a/58677474
+Validating arrays and nested values in Laravel >> https://blog.logrocket.com/validating-arrays-nested-values-laravel/
+Convert Array To Collection in Laravel >> https://stackoverflow.com/questions/49083535/convert-array-to-collection-in-laravel
+How to return view with flash message? >> https://stackoverflow.com/questions/42417865/how-to-return-view-with-flash-message
+Create live templates (phpstorm) >> https://www.jetbrains.com/help/phpstorm/creating-and-editing-live-templates.html
+How to show only error message in Laravel Validator >> https://stackoverflow.com/questions/68452222/how-to-show-only-error-message-in-laravel-validator
+How To: Validate an array of form fields with Laravel >> https://ericlbarnes.com/2015/04/04/laravel-array-validation/ +
+Form Request Validation for Dynamically Generated Fields? >> https://laracasts.com/discuss/channels/laravel/form-request-validation-for-dynamically-generated-fields?page=1
+https://stackoverflow.com/questions/1834703/how-to-access-first-level-keys-of-a-2d-array-with-a-foreach-loop >> foreach ($array as $key => $value)
 

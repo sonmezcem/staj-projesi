@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('business_name',100);
             $table->string('business_address',250);
             $table->string('business_phone',10);
-            $table->integer('quota');
+            $table->integer('quota')->nullable();
+            $table->integer('applicants')->nullable();
             $table->boolean('status');
             $table->timestamps();
         });

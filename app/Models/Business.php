@@ -15,6 +15,7 @@ class Business extends Model
         'business_address',
         'business_phone',
         'quota',
+        'applicants',
         'status',
     ];
 

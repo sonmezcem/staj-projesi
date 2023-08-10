@@ -39,6 +39,15 @@
 
             <div class="row">
                 <div class="x_panel">
+                    @if (!empty($message))
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">×</span>
+                            </button>
+                            <strong>{{$message}}</strong>
+                        </div>
+                    @endif
+
                     <div class="x_title">
                         <h2>Bilgilerim</h2>
                         <div class="clearfix"></div>
@@ -78,22 +87,27 @@
                 <div class="x_panel col-lg-3">
                     Staj Durumu
                 </div>
-                @if(isset($student[0]) && $student[0]->internship_status == 1)
+                @if(isset($student) && $student->internship_status == 1)
                     <div class="x_panel col-lg-9 alert alert-info">
                         <i class="fa fa-spinner" aria-hidden="true"></i>
                         <strong>Staj başvurunuz onay için bekleniyor. Onaylandığında eposta ile
                             bilgilendirileceksiniz.</strong>
                     </div>
-                @elseif(isset($student[0]) && $student[0]->internship_status == 2)
+                @elseif(isset($student) && $student->internship_status == 2)
                     <div class="x_panel col-lg-9 alert alert-success">
-                        <strong>Staj başvurunuz onaylandı. {{$student[0]->internship_start_date->format('d M Y')}}
+                        <strong>Staj başvurunuz onaylandı. {{$student->internship_start_date->format('d M Y')}}
                             tarihinde stajınız başlayacaktır.</strong>
                     </div>
-                @else
+                @elseif(isset($student) && $student->internship_status == 3)
                     <div class="x_panel col-lg-9 alert alert-danger">
                         <strong>Staj başvurunuz red edildi. Nedenini öğrenmek için <a href="#">tıklayınız.</a></strong>
                     </div>
+                @else
+                    <div class="x_panel col-lg-9 alert">
+                        <strong>Henüz staj başvurusu yapmadınız. Staj başvurusu yapmak için <a href="{{URL::to('student/application-form')}}">tıklayınız</a>.</strong>
+                    </div>
                 @endif
+
             </div>
             {{--<div>
                 --}}{{--{{$student}}--}}{{--

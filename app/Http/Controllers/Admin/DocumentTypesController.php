@@ -95,7 +95,7 @@ class DocumentTypesController extends Controller
         $business = new DocumentTypes();
         $business->where('id', $id)->update($statusUpdate);
 
-        return back()->with('success','İşletme başarılı bir şekilde silindi!');
+        return back()->with('success','Döküman türü başarılı bir şekilde silindi!');
 
     }
 }

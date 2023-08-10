@@ -7,4 +7,6 @@ Staj durumu red edilmiş öğrenciler için menüde yer yok.
 Staj başvurusu onaylandığında veya red edildiğinde eposta ile bilgilendirme yapılması.
 Öğrenci sayfasında internship_status === 3'de ki bağlantının yapılması.
 Öğrencinin belge türü seçip yüklemesi.
-
+Öğrenci'nin ikinci döküman türünde hata çıkmıyor.
+Business edit'te form için old verileri girilmiş değil.
+Eğer Staj kaydı yapıldı ise ikinci başvuruya izin verilmeyecek ayrıca staj başvuru formu tamamlandığında sweet alert çalıştırılacak.

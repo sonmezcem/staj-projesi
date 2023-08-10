@@ -29,12 +29,6 @@ class OfficerController extends Controller
 
     public function store(Request $request){
 
-/*        echo "<pre>";
-        print_r($request->all());
-        echo "</pre>";
-        exit();*/
-
-
         $validated = $request->validate(
             [
                 'username' => ['required', 'min:3'],

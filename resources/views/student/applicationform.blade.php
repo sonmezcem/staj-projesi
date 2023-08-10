@@ -38,6 +38,15 @@
         <div class="right_col" role="main">
 
             <div class="row">
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success alert-dismissible " role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">×</span>
+                        </button>
+                        <strong>{{$message}}!</strong>
+                    </div>
+                @endif
+
                 <div class="x_panel">
                     <form id="internshipApplicationForm"
                           method="POST"
@@ -108,7 +117,7 @@
                                             <option value="2">Gönüllü</option>
                                         </select>
                                     @else
-                                        <select id="staj-turu" class="form-control" required name="internship_type" >
+                                        <select id="staj-turu" class="form-control" required name="internship_type">
                                             <option value="1">Zorunlu</option>
                                             <option value="2" selected>Gönüllü</option>
                                         </select>
@@ -128,8 +137,11 @@
                                         name="internship_start_date"
                                         @if(isset($student->internship_start_date))
                                             value="{{$student->internship_start_date->format('d/m/Y')}}"
+                                        @else
+                                            value="{{old('internship_start_date')}}"
                                         @endif
                                     >
+                                    @error('internship_start_date') <span class="red">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -146,8 +158,11 @@
                                         name="internship_end_date"
                                         @if(isset($student->internship_end_date))
                                             value="{{$student->internship_end_date->format('d/m/Y')}}"
+                                        @else
+                                            value="{{old('internship_end_date')}}"
                                         @endif
                                     >
+                                    @error('internship_end_date') <span class="red">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                         </div>
@@ -163,26 +178,63 @@
                                         class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="business-name" name="business_name" required="required" class="form-control ">
+                                    <input
+                                        type="text"
+                                        id="business-name"
+                                        name="business_name"
+                                        required="required"
+                                        class="form-control"
+                                        @if(isset($business->business_name))
+                                            value="{{$business->business_name}}"
+                                        @else
+                                            value="{{old('business_name')}}"
+                                        @endif
+                                    >
+                                    @error('business_name') <span class="red">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="business_address">Firma Adresi<span
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="business_address">Firma
+                                    Adresi<span
                                         class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="business_address" name="business_address" required="required"
-                                           class="form-control">
+                                    <input
+                                        type="text"
+                                        id="business_address"
+                                        name="business_address"
+                                        required="required"
+                                        class="form-control"
+                                        @if(isset($business->business_address))
+                                            value="{{$business->business_address}}"
+                                        @else
+                                            value="{{old('business_address')}}"
+                                        @endif
+                                    >
+                                    @error('business_address') <span class="red">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label for="ogrenci-num" name="business_phone" class="col-form-label col-md-3 col-sm-3 label-align">Firma
+                                <label for="ogrenci-num" name="business_phone"
+                                       class="col-form-label col-md-3 col-sm-3 label-align">Firma
                                     Telefon Numarası
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input id="business_phone" class="form-control" type="number" name="business_phone"
-                                           required>
+                                    <input
+                                        id="business_phone"
+                                        class="form-control"
+                                        type="number"
+                                        name="business_phone"
+                                        required
+                                        @if(isset($business->business_phone))
+                                            value="{{$business->business_phone}}"
+                                        @else
+                                            value="{{old('business_phone')}}"
+                                        @endif
+
+                                    >
+                                    @error('business_phone') <span class="red">{{ $message }}</span> @enderror
                                 </div>
                             </div>
 
@@ -195,15 +247,23 @@
 
                             @foreach($documentTypes as $documentType)
 
-                            <div class="item form-group">
-                                <label for="formFileLg" class="col-form-label col-md-3 col-sm-3 label-align">{{$documentType->document_type}}</label>
-                                 <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input class="form-control border-0" id="formFileLg" name="documentType[{{$documentType->document_slug}}]" type="file" />
+                                <div class="item form-group">
+                                    <label for="formFileLg"
+                                           class="col-form-label col-md-3 col-sm-3 label-align">{{$documentType->document_type}}</label>
+                                    <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input
+                                            class="form-control border-0"
+                                            id="formFileLg"
+                                            name="{{$documentType->document_slug}}"
+                                            type="file"
+                                            value="{{old($documentType->document_slug)}}"
+                                        >
+                                        @error($documentType->document_slug) <span
+                                            class="red">{{ $message }}</span> @enderror
+                                    </div>
                                 </div>
-                            </div>
-
                             @endforeach
 
 
@@ -214,9 +274,6 @@
                                     <button type="submit" class="btn btn-success">Fakülte Onayına Gönder</button>
                                 </div>
                             </div>
-
-
-
                         </div>
                     </form>
                 </div>
