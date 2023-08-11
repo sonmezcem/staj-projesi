@@ -24,6 +24,7 @@ class BusinessFactory extends Factory
             'business_address' => fake()->address,
             'business_phone' => "5955318548",
             'quota' => fake()->numberBetween(1,9),
+            'applicants' => fake()->numberBetween(1,3),
             'status' => fake()->boolean
         ];
     }

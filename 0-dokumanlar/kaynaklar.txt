@@ -52,5 +52,10 @@ Create live templates (phpstorm) >> https://www.jetbrains.com/help/phpstorm/crea
 How to show only error message in Laravel Validator >> https://stackoverflow.com/questions/68452222/how-to-show-only-error-message-in-laravel-validator
 How To: Validate an array of form fields with Laravel >> https://ericlbarnes.com/2015/04/04/laravel-array-validation/ +
 Form Request Validation for Dynamically Generated Fields? >> https://laracasts.com/discuss/channels/laravel/form-request-validation-for-dynamically-generated-fields?page=1
-https://stackoverflow.com/questions/1834703/how-to-access-first-level-keys-of-a-2d-array-with-a-foreach-loop >> foreach ($array as $key => $value)
-
+foreach ($array as $key => $value)  >> https://stackoverflow.com/questions/1834703/how-to-access-first-level-keys-of-a-2d-array-with-a-foreach-loop
+Jquery assign value to input >> https://stackoverflow.com/a/12886065
+How to use a where with two fields of the same table ? >> https://laracasts.com/discuss/channels/eloquent/problem-for-comparing-two-fields-with-a-where
+Find two column in laravel which have equal values via Eloquent? >> https://stackoverflow.com/a/27290522
+Php Remove parent level array from set of arrays and merge nodes >> https://itecnote.com/tecnote/php-remove-parent-level-array-from-set-of-arrays-and-merge-nodes/
+Start date less than end date >> https://laracasts.com/discuss/channels/laravel/start-date-less-than-end-date
+How do I get the value of text input field using JavaScript? >> https://stackoverflow.com/a/26746341

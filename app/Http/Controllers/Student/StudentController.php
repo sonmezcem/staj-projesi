@@ -10,7 +10,6 @@ use App\Models\Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
 {
@@ -22,7 +21,9 @@ class StudentController extends Controller
 
         $student = Student::all()->where('id', Auth::user()->id)->first();
 
-        return view('student.index', compact('student'));
+        $business = Business::all()->where('id', $student->business_id)->first();
+
+        return view('student.index', compact('student', 'business'));
     }
 
     /**
@@ -41,23 +42,16 @@ class StudentController extends Controller
 
         // İşletme bilgileri başlangıç
 
-        $studentInformation = Student::all()->where('user_id', Auth::user()->id);
+        $studentInformation = Student::all()->where('user_id', Auth::user()->id)->first();
 
-        $gelipGecici = 0;
 
-        if(empty($studentInformation->business_id)&& $gelipGecici === 1){
+        if (!is_null($studentInformation->business_id)) {
 
-            $student = Student::all()->where('id', Auth::user()->id);
+            $student = Student::all()->where('id', Auth::user()->id)->first();
 
-            return view('student.index', compact('student'))->with('message','Başvurunuz bulunduğu için yeni başvuru yapamazsınız...');
+            return view('student.index', compact('student'))->with('message', 'Başvurunuz bulunduğu için yeni başvuru yapamazsınız...');
 
-            //$business = Business::all()->where('id', $studentInformation->business_id)->first();
-            //$business = call_user_func_array('array_merge', $business);
-            //$business = collect($business);
-            //return view('student.applicationform', compact('student', 'documentTypes','business'));
-
-        }else{
-            //return view('student.applicationform', compact('student', 'documentTypes'));
+        } else {
 
             $business = $request->validate(
                 [
@@ -79,29 +73,17 @@ class StudentController extends Controller
             $applicants['applicants'] = $businessApplicants->applicants + 1;
             Business::where('id', $businessId)->update($applicants);
 
-
-            echo "<pre>";
-            print_r($businessApplicants);
-            echo "</pre>";
-            exit();
-
-
-
-            //Business::where('id', $businessId)->update('applicant');
-
-
             // İşletme bilgileri son
 
             // Öğrenci bilgileri başlangıç
 
             $student = $request->validate([
                 'internship_start_date' => ['required', 'date_format:d/m/Y'],
-                'internship_end_date' => ['required', 'date_format:d/m/Y'],
+                'internship_end_date' => ['required', 'date_format:d/m/Y', 'after:internship_start_date'],
                 'internship_type' => ['between:1,2'],
             ]);
             $student['internship_start_date'] = Carbon::createFromFormat('d/m/Y', $student['internship_start_date']);
             $student['internship_end_date'] = Carbon::createFromFormat('d/m/Y', $student['internship_end_date']);
-
             $student['internship_status'] = 1;
             $student['user_id'] = Auth::user()->id;
             $student['business_id'] = $businessId;
@@ -144,15 +126,10 @@ class StudentController extends Controller
 
             $student = Student::all()->where('id', Auth::user()->id)->first();
 
-/*            echo "<pre>";
-            print_r($student);
-            echo "</pre>";
-            exit();*/
 
-            return view('student.index', compact('student'));
+            return view('student.index', compact('student'))->with('message', 'Başvurunuz alındı. Lütfen, size gelecek epostayı bekleyiniz...');
 
         }
-
 
 
     }
@@ -201,17 +178,66 @@ class StudentController extends Controller
 
         $documentTypes = DocumentTypes::all()->where('status', 1);
 
-        if(isset($student->business_id)){
+        if (isset($student->business_id)) {
 
             $business = Business::all()->where('id', $student->business_id)->first();
-            //$business = call_user_func_array('array_merge', $business);
-            //$business = collect($business);
-            return view('student.applicationform', compact('student', 'documentTypes','business'));
 
-        }else{
+            return view('student.applicationform', compact('student', 'documentTypes', 'business'));
+
+        } else {
             return view('student.applicationform', compact('student', 'documentTypes'));
         }
+    }
 
+    public function findMeBusiness()
+    {
+
+        $businesses = Business::whereRaw('businesses.applicants < businesses.quota')->where('status', '=', 1)->get();
+
+        return view('student.findmebusiness', compact('businesses'));
+
+    }
+
+    public function apply($id, Request $request)
+    {
+
+        $studentInformation = Student::all()->where('user_id', Auth::user()->id)->first();
+
+
+        //$gelipGecici = 0;
+
+
+        if (!is_null($studentInformation->business_id)) {
+
+            $student = Student::all()->where('id', Auth::user()->id)->first();
+
+            return view('student.index', compact('student'))->with('message', 'Başvurunuz bulunduğu için yeni başvuru yapamazsınız...');
+
+        } else {
+            $student = $request->validate([
+                'hidden_internship_start_date' => ['required', 'date_format:d/m/Y'],
+                'hidden_internship_end_date' => ['required', 'date_format:d/m/Y', 'after:hidden_internship_start_date'],
+                'hidden_internship_type' => ['between:1,2'],
+            ]);
+
+            $studentInternship['internship_start_date'] = Carbon::createFromFormat('d/m/Y', $request['hidden_internship_start_date']);
+            $studentInternship['internship_end_date'] = Carbon::createFromFormat('d/m/Y', $request['hidden_internship_end_date']);
+            $studentInternship['internship_type'] = $request['hidden_internship_type'];
+            $studentInternship['internship_status'] = 1;
+            $studentInternship['business_id'] = $id;
+            Student::where('student_number', $studentInformation->student_number)->update($studentInternship);
+
+            $businessApplicants = Business::where('id', $id)->get()->first();
+
+            $applicants['applicants'] = $businessApplicants->applicants + 1;
+            Business::where('id', $id)->update($applicants);
+
+
+            $student = $studentInformation;
+
+            return view('student.index', compact('student'))->with('message', 'Başvurunuz alındı. Lütfen, size gelecek epostayı bekleyiniz...');
+
+        }
 
     }
 }

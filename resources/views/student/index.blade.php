@@ -83,9 +83,72 @@
                             </div>
                         </div>
                     </div>
+
+                    @if(isset($student->business_id))
+                            <div class="x_title">
+                                <h2>Staj Yeri Bilgileri</h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <br>
+                                <div class="form-group row">
+                                    <label class="col-form-label col-md-2 col-sm-2 ">İşletme Adı :</label>
+                                    <div class="col-md-10 col-sm-10 ">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            readonly="readonly"
+                                            value="{{$business->business_name}}"
+                                               >
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-form-label col-md-2 col-sm-2 ">İşletme adresi :</label>
+                                    <div class="col-md-10 col-sm-10 ">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            readonly="readonly"
+                                            value="{{$business->business_address}}"
+                                        >
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-form-label col-md-2 col-sm-2 ">Telefon Numarası :</label>
+                                    <div class="col-md-10 col-sm-10 ">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            readonly="readonly"
+                                            value="{{$business->business_phone}}"                                        >
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-form-label col-md-2 col-sm-2 ">Staja başlama Tarihi :</label>
+                                    <div class="col-md-10 col-sm-10 ">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            readonly="readonly"
+                                            value="{{$student->internship_start_date->toDateString()}}"                                        >
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-form-label col-md-2 col-sm-2 ">Staj Tamamlanma Tarihi :</label>
+                                    <div class="col-md-10 col-sm-10 ">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            readonly="readonly"
+                                            value="{{$student->internship_end_date->toDateString()}}"                                        >
+                                    </div>
+                                </div>
+                            </div>
+
+                        @endif
                 </div>
                 <div class="x_panel col-lg-3">
-                    Staj Durumu
+                    Staj Başvuru Durumu
                 </div>
                 @if(isset($student) && $student->internship_status == 1)
                     <div class="x_panel col-lg-9 alert alert-info">

@@ -24,3 +24,6 @@ Hata uyarıları ingilizce
 İşletme Eklenmiyor
 Yetkili Eklenmiyor (böyle bir ana bilgisayar yok hatası veriyor)
 >>>>>>> 2d87a8e6830593fb7fe9927b940ee26b90fa8047
+Yönetici ve Yetkili bir işletmenin kotasına tıkladığında hangi öğrenciler o işletmede staj görüyorsa görebilecek.
+Yönetici panelde onay işlemlerinde resimlerin görüntülenmesi, öğrenci'den staj işletmesi kaldırıldığında ilgili kontenjandan düşmesi.
+Staj tarihi sona erdiğinde otomatik olarak kontenjandan düşme işlemi.

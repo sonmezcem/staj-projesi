@@ -6,6 +6,9 @@
             </li>
             <li><a href="{{URL::to('student/application-form')}}"><i class="fa fa-edit"></i>Staj Başvuru Formu</a>
             </li>
+            <li><a href="{{URL::to('student/find-me-business')}}"><i class="fa fa-exclamation"></i>Staj Yeri Bulamadım</a>
+            </li>
+
 
             {{--
                         <li><a><i class="fa fa-user"></i> Yetkililer <span class="fa fa-chevron-down"></span></a>
