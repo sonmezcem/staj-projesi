@@ -48,73 +48,6 @@
                 @endif
 
                 <div class="x_panel">
-                    <div class="x_title">
-                        <h2>Staj Bilgileri</h2>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                        <br>
-                        <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Staj
-                                Türü:<span
-                                    class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 ">
-                                @if(isset($student) && $student->internship_type === 1)
-                                    <select id="staj-turu" class="form-control" required name="internship_type">
-                                        <option value="1" selected>Zorunlu</option>
-                                        <option value="2">Gönüllü</option>
-                                    </select>
-                                @else
-                                    <select id="staj-turu" class="form-control" required name="internship_type">
-                                        <option value="1">Zorunlu</option>
-                                        <option value="2" selected>Gönüllü</option>
-                                    </select>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Staj
-                                Başlangıç Tarihi<span
-                                    class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <input
-                                    type="text"
-                                    id="internship_start_date"
-                                    class="form-control"
-                                    name="internship_start_date"
-                                    @if(isset($student->internship_start_date))
-                                        value="{{$student->internship_start_date->format('d/m/Y')}}"
-                                    @else
-                                        value="{{old('internship_start_date')}}"
-                                    @endif
-                                >
-                                @error('hidden_internship_start_date') <span class="red">{{ $message }}</span> @enderror
-                            </div>
-                        </div>
-                        <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Staj Bitiş
-                                Tarihi :<span
-                                    class="required">*</span>
-                            </label>
-                            </label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <input
-                                    type="text"
-                                    id="internship_end_date"
-                                    class="form-control"
-                                    name="internship_end_date"
-                                    @if(isset($student->internship_end_date))
-                                        value="{{$student->internship_end_date->format('d/m/Y')}}"
-                                    @else
-                                        value="{{old('internship_end_date')}}"
-                                    @endif
-                                >
-                                @error('hidden_internship_end_date') <span class="red">{{ $message }}</span> @enderror
-                            </div>
-                        </div>
-                    </div>
 
 
                     <div class="x_title">
@@ -156,12 +89,9 @@
                                                         <form
                                                             id="isletme-{{$business->id}}"
                                                             action="{{route('student.apply', $business->id)}}"
-                                                            method="POST"
+                                                            method="GET"
                                                         >
                                                             @csrf
-                                                            <input type="hidden" id="hidden_internship_type-{{$business->id}}" name="hidden_internship_type">
-                                                            <input type="hidden" id="hidden_internship_start_date-{{$business->id}}" name="hidden_internship_start_date">
-                                                            <input type="hidden" id="hidden_internship_end_date-{{$business->id}}" name="hidden_internship_end_date">
 
                                                             <button type="submit"
                                                                     class="btn btn-success text-light"
@@ -213,6 +143,7 @@
         });
     })
 </script>
-
+<script>
+</script>
 </body>
 </html>

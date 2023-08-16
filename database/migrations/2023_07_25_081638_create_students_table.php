@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->integer('student_number');
-            $table->date('internship_start_date');
-            $table->date('internship_end_date');
+            $table->date('internship_start_date')->nullable();
+            $table->date('internship_end_date')->nullable();
             $table->tinyInteger('internship_status')->default(1);
             $table->tinyInteger('internship_type')->default(1);
             $table->unsignedBigInteger('user_id');

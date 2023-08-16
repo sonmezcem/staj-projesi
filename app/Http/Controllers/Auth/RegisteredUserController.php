@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Student;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -30,7 +31,8 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
+
+        $newUser = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
             'phone' => ['phone:TR'],
@@ -40,7 +42,22 @@ class RegisteredUserController extends Controller
             'captcha' => ['required','captcha'],
         ]);
 
-        $user = User::create([
+        $newUser['profile_picture'] = 'gecici_profil_resmi_yolu';
+        $newUser['password'] = Hash::make($newUser['password']);
+        $newUser['status'] = 1;
+
+        $user = User::create($newUser)->assignRole('Öğrenci');
+
+
+        $newStudent = $request->validate([
+            'student_number' => ['required', 'numeric']
+        ]);
+        $newStudent['user_id'] = $user->id;
+
+        Student::create($newStudent);
+
+
+/*        $user = User::create([
             'name' => $request->name,
             'surname' => $request->surname,
             'phone' => $request->phone,
@@ -49,7 +66,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'status' => 1,
-        ]);
+        ])->assignRole('Öğrenci');*/
 
         event(new Registered($user));
 

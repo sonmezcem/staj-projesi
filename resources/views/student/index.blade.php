@@ -36,145 +36,123 @@
         <!-- page content -->
 
         <div class="right_col" role="main">
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success alert-dismissible " role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">×</span>
+                    </button>
+                    <strong>{{$message}}!</strong>
+                </div>
+            @endif
 
-            <div class="row">
-                <div class="x_panel">
-                    @if (!empty($message))
-                        <div class="alert alert-danger alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                    aria-hidden="true">×</span>
-                            </button>
-                            <strong>{{$message}}</strong>
-                        </div>
-                    @endif
-
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Merhaba {{Auth::user()->name . " " . Auth::user()->surname}}</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    Lütfen, sol taraftan staj başvurusu yada staj yeri bulamadıysanız staj yeri bulamadım bağlantısına tıklayınız.
+                </div>
                     <div class="x_title">
-                        <h2>Bilgilerim</h2>
+                        <h2>Öğrenci Bilgileri</h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
                         <br>
-                        <div class="form-group row">
-                            <label class="col-form-label col-md-2 col-sm-2 ">Adı :</label>
-                            <div class="col-md-10 col-sm-10 ">
-                                <input type="text" class="form-control" readonly="readonly"
-                                       placeholder="{{ Auth::user()->name}}">
+                        <div class="item form-group">
+                            <label for="ogrenci-num" class="col-form-label col-md-3 col-sm-3 label-align">Öğrenci
+                                Numarası<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input id="ogrenci-num"
+                                       class="form-control"
+                                       value="{{$student->student_number}}"
+                                       readonly
+                                >
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-form-label col-md-2 col-sm-2 ">Soyadı :</label>
-                            <div class="col-md-10 col-sm-10 ">
-                                <input type="text" class="form-control" readonly="readonly"
-                                       placeholder="{{ Auth::user()->surname}}">
+                        <div class="item form-group">
+                            <label for="ogrenci-num" class="col-form-label col-md-3 col-sm-3 label-align">Ad
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input id="ogrenci-num"
+                                       class="form-control"
+                                       value="{{Auth::user()->name}}"
+                                       readonly
+                                >
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-form-label col-md-2 col-sm-2 ">Telefon Numarası :</label>
-                            <div class="col-md-10 col-sm-10 ">
-                                <input type="text" class="form-control" readonly="readonly"
-                                       placeholder="{{ Auth::user()->phone}}">
+                        <div class="item form-group">
+                            <label for="ogrenci-num" class="col-form-label col-md-3 col-sm-3 label-align">Soyad
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input id="ogrenci-num"
+                                       class="form-control"
+                                       value="{{Auth::user()->surname}}"
+                                       readonly
+                                >
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-form-label col-md-2 col-sm-2  ">E-Posta Adresi :</label>
-                            <div class="col-md-10 col-sm-10 ">
-                                <input type="text" class="form-control" readonly="readonly"
-                                       placeholder="{{ Auth::user()->email}}">
+                        <div class="item form-group">
+                            <label for="ogrenci-num" class="col-form-label col-md-3 col-sm-3 label-align">Telefon
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input id="ogrenci-num"
+                                       class="form-control"
+                                       value="{{Auth::user()->phone}}"
+                                       readonly
+                                >
                             </div>
                         </div>
+                        <div class="item form-group">
+                            <label for="ogrenci-num" class="col-form-label col-md-3 col-sm-3 label-align">Eposta
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input id="ogrenci-num"
+                                       class="form-control"
+                                       value="{{Auth::user()->email}}"
+                                       readonly
+                                >
+                            </div>
+                        </div>
+
                     </div>
+            </div>
 
-                    @if(isset($student->business_id))
-                            <div class="x_title">
-                                <h2>Staj Yeri Bilgileri</h2>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="x_content">
-                                <br>
-                                <div class="form-group row">
-                                    <label class="col-form-label col-md-2 col-sm-2 ">İşletme Adı :</label>
-                                    <div class="col-md-10 col-sm-10 ">
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            readonly="readonly"
-                                            value="{{$business->business_name}}"
-                                               >
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-form-label col-md-2 col-sm-2 ">İşletme adresi :</label>
-                                    <div class="col-md-10 col-sm-10 ">
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            readonly="readonly"
-                                            value="{{$business->business_address}}"
-                                        >
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-form-label col-md-2 col-sm-2 ">Telefon Numarası :</label>
-                                    <div class="col-md-10 col-sm-10 ">
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            readonly="readonly"
-                                            value="{{$business->business_phone}}"                                        >
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-form-label col-md-2 col-sm-2 ">Staja başlama Tarihi :</label>
-                                    <div class="col-md-10 col-sm-10 ">
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            readonly="readonly"
-                                            value="{{$student->internship_start_date->toDateString()}}"                                        >
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-form-label col-md-2 col-sm-2 ">Staj Tamamlanma Tarihi :</label>
-                                    <div class="col-md-10 col-sm-10 ">
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            readonly="readonly"
-                                            value="{{$student->internship_end_date->toDateString()}}"                                        >
-                                    </div>
-                                </div>
-                            </div>
-
-                        @endif
-                </div>
                 <div class="x_panel col-lg-3">
-                    Staj Başvuru Durumu
+                    Staj Durumu
                 </div>
-                @if(isset($student) && $student->internship_status == 1)
-                    <div class="x_panel col-lg-9 alert alert-info">
-                        <i class="fa fa-spinner" aria-hidden="true"></i>
-                        <strong>Staj başvurunuz onay için bekleniyor. Onaylandığında eposta ile
-                            bilgilendirileceksiniz.</strong>
+
+            @if(isset($student) && $student->internship_status == 1)
+
+                    <div class="x_panel col-lg-9 alert">
+                        <strong>Henüz staj başvurusu yapmadınız. Staj başvurusu yapmak için <a href="{{URL::to('student/application-form')}}">tıklayınız</a>.</strong>
                     </div>
                 @elseif(isset($student) && $student->internship_status == 2)
+                    <div class="x_panel col-lg-9 alert alert-info">
+                        <i class="fa fa-spinner" aria-hidden="true"></i>
+                        <strong>Staj başvurunuz alındı ve onay için bekleniyor. Onaylandığında eposta ile
+                            bilgilendirileceksiniz.</strong>
+                    </div>
+                @elseif(isset($student) && $student->internship_status == 3)
                     <div class="x_panel col-lg-9 alert alert-success">
                         <strong>Staj başvurunuz onaylandı. {{$student->internship_start_date->format('d M Y')}}
                             tarihinde stajınız başlayacaktır.</strong>
                     </div>
-                @elseif(isset($student) && $student->internship_status == 3)
+                @elseif(isset($student) && $student->internship_status == 4)
                     <div class="x_panel col-lg-9 alert alert-danger">
                         <strong>Staj başvurunuz red edildi. Nedenini öğrenmek için <a href="#">tıklayınız.</a></strong>
                     </div>
                 @else
-                    <div class="x_panel col-lg-9 alert">
-                        <strong>Henüz staj başvurusu yapmadınız. Staj başvurusu yapmak için <a href="{{URL::to('student/application-form')}}">tıklayınız</a>.</strong>
+                    <div class="x_panel col-lg-9 alert alert-danger">
+                        <strong>Staj ile ilgili bir işlem sizin için bulunmamaktadır.</strong>
                     </div>
                 @endif
 
-            </div>
-            {{--<div>
-                --}}{{--{{$student}}--}}{{--
-            </div>--}}
 
         </div>
 
@@ -192,7 +170,18 @@
     </div>
 </div>
 
+
 @include('student.common.js')
 
+@if(isset($rejectionReason->reason))
+    <script>
+        function bilgi() {
+            Swal.fire({
+                title: '{{$rejectionReason->reason}}, <br> <p class="small"> Eksiklikleri gidermeniz için ilgili bölümler aktiftir. Lütfen, eksiklikleri tamamlayınız.</p>',
+                confirmButtonText: 'Tamam',
+            })
+        }
+    </script>
+@endif
 </body>
 </html>

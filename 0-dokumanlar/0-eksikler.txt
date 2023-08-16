@@ -27,3 +27,16 @@ Yetkili Eklenmiyor (böyle bir ana bilgisayar yok hatası veriyor)
 Yönetici ve Yetkili bir işletmenin kotasına tıkladığında hangi öğrenciler o işletmede staj görüyorsa görebilecek.
 Yönetici panelde onay işlemlerinde resimlerin görüntülenmesi, öğrenci'den staj işletmesi kaldırıldığında ilgili kontenjandan düşmesi.
 Staj tarihi sona erdiğinde otomatik olarak kontenjandan düşme işlemi.
+http://127.0.0.1:8000/student/apply/32 bağlantısındaki id değiştirilip girilmeye çalışıldığında eğer kullanıcı hali hazırda bir işletmeye başvuru yaptıysa izin verilmeyecek.
+Öğrenci staj durumu red edildiyse öğrenciye eposta gönderilecek.
+İlk kayıt olan öğrenci, rolü öğrenci olarak kaydolmuyor.
+application-form'da yer alan işletme telefonu validasyonunda sorun var. Orayı 10 karakter olarak ayarlamalıyız.
+Stajı tamamlananlar cron ile günlük kontrol edilip staj durumunun değiştirilmesi.
+Yönetici onaylarken staj başlama tarihi, staj bitiş tarihi yanına staj türü eklenecek aynı zamanda formada staj türü eklenecek.
+Red sayfasında hata varsa hatanın gösterilmesi. bag
+Admin panelde öğrenci düzenleme sayfasında Sıfırlama butonunda yer alan OK metni tamam olarak değiştirilmesi.
+Öğrenci sıfırlandığında yüklediği dosyalarında silinmesi.
+findmebusiness de problem var giderilmesi..
+Admin students/edit sayfasında yani öğrenci düzenleme sayfasında. Lütfen, problemleri seçiniz bölümündeki tiklerin dinamik bir şekilde seçili gelmesi.
+Öğrenci staj yerine kabul edildiğinde applicants sayısının 1 arttırılması tamamlandığında ise 1 azaltılması.
+$student['internship_type'] = 1; /// seçilene göre olacak... 1 Zorunlu 2 Gönüllü

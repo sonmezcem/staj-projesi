@@ -11,6 +11,10 @@
                     @csrf
                     <h1>Hesap Oluştur</h1>
                     <div>
+                        <x-text-input id="student_number" class="form-control" type="text" name="student_number" :value="old('student_number')"
+                                      required autofocus autocomplete="student_number" placeholder="Öğrenci Numaranız"/>
+                    </div>
+                    <div>
                         <x-text-input id="name" class="form-control" type="text" name="name" :value="old('name')"
                                       required autofocus autocomplete="name" placeholder="Adınız"/>
                     </div>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use PhpParser\Comment\Doc;
 
 class Student extends Model
 {
@@ -38,5 +39,26 @@ class Student extends Model
         return $this->hasOne(Business::class,'id','business_id');
 
     }
+
+    public function document(){
+
+
+            return $this->hasMany(Documents::class,'student_number_id','id');
+
+    }
+    public function rejection(){
+
+
+        return $this->hasOne(RejectionReason::class,'student_id','id');
+
+    }
+
+    public function error(){
+
+
+        return $this->hasMany(Errors::class,'student_id','id');
+
+    }
+
 
 }

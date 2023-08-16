@@ -18,4 +18,10 @@ class Documents extends Model
 
     ];
 
+    public function document(){
+
+        return $this->belongsTo(Documents::class);
+
+    }
+
 }

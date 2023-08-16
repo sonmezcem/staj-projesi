@@ -60,14 +60,23 @@ Route::middleware(['auth', 'role:Yönetici'])->name('admin.')->prefix('admin')->
     Route::get('/student-search', [StudentController::class, 'searchBusiness']);
     Route::resource('/documents', DocumentController::class);
     Route::resource('/documenttypes', DocumentTypesController::class);
+    Route::post('/internship-removal/{id}', [StudentController::class, 'internshipRemoval']);
+
+
 });
+
+Route::middleware(['auth', 'role:Yetkili'])->name('officer.')->prefix('officer')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Officer\OfficerController::class, 'index'])->name('index');
+});
+
 
 Route::middleware(['auth', 'role:Öğrenci'])->name('student.')->prefix('student')->group(function () {
     Route::get('/', [\App\Http\Controllers\Student\StudentController::class, 'index'])->name('index');
     Route::get('/application-form', [\App\Http\Controllers\Student\StudentController::class, 'applicationForm']);
     Route::get('/find-me-business', [\App\Http\Controllers\Student\StudentController::class, 'findMeBusiness']);
     Route::resource('/students', \App\Http\Controllers\Student\StudentController::class);
-    Route::post('/apply/{id}', '\App\Http\Controllers\Student\StudentController@apply')->name('apply');
+    Route::get('/apply/{id}', [\App\Http\Controllers\Student\StudentController::class, 'apply'])->name('apply');
+    Route::post('/fix', [\App\Http\Controllers\Student\StudentController::class, 'fix'])->name('fix');
 });
 
 

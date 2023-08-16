@@ -59,3 +59,5 @@ Find two column in laravel which have equal values via Eloquent? >> https://stac
 Php Remove parent level array from set of arrays and merge nodes >> https://itecnote.com/tecnote/php-remove-parent-level-array-from-set-of-arrays-and-merge-nodes/
 Start date less than end date >> https://laracasts.com/discuss/channels/laravel/start-date-less-than-end-date
 How do I get the value of text input field using JavaScript? >> https://stackoverflow.com/a/26746341
+Can I update user profile by username instead of user ID >> https://laracasts.com/discuss/channels/laravel/can-i-update-user-profile-by-username-instead-of-user-id
+Laravel needs to display only the date not the time using the Carbon class >> https://stackoverflow.com/a/28962627

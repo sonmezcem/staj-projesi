@@ -4,8 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Business;
+use App\Models\Documents;
+use App\Models\DocumentTypes;
+use App\Models\Errors;
+use App\Models\RejectionReason;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class StudentController extends Controller
 {
@@ -28,12 +35,6 @@ class StudentController extends Controller
                 return $query->where('status', 'LIKE', '%' . $status . '%');
             })
             ->paginate(10);
-
-        /*echo "<pre>";
-        print_r($students);
-        echo "</pre>";
-
-        exit();*/
 
         return view('admin.student.index', compact('students'));
 
@@ -68,17 +69,17 @@ class StudentController extends Controller
      */
     public function edit(string $id)
     {
-        //$user = User::find($id);
+        $documentTypes = DocumentTypes::all();
 
         $user = Student::query()
-            ->with('user.user', 'business.business')
+            ->with('user.user', 'business.business', 'document.document', 'rejection.rejection','error.error')
             ->whereHas('user', function ($query) {
                 return $query->where('status', 'LIKE', '%' . 1 . '%');
             })
             ->get()
             ->find($id);
 
-        return view("admin.student.edit", compact('user'));
+        return view("admin.student.edit", compact('user', 'documentTypes'));
 
     }
 
@@ -87,7 +88,71 @@ class StudentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $approvalStatus = $request->all()['approval-radio'];
+
+        if ($approvalStatus == "dismiss") {
+
+            $validated = $request->validate([
+                'reason' => 'required',
+                'errors' => 'required'
+            ]);
+
+            $validated['student_id'] = $id;
+
+            RejectionReason::updateOrCreate(    [
+                'student_id'   => $id,
+            ],$validated);
+
+            $student = Student::findOrFail($id);
+            $student->internship_status = 4;
+            $student->save();
+
+
+            if (isset($request->all()['errors'])) {
+                foreach ($request->all()['errors'] as $error) {
+                    $errorUpdateOrCreate['student_id'] = $id;
+                    $errorUpdateOrCreate['problem'] = $error;
+                    $errorUpdateOrCreate['status'] = 1;
+                    Errors::updateOrCreate($errorUpdateOrCreate);
+
+                    if($error === "business_error"){
+
+                        $student = Student::findOrFail($id);
+                        $student->business_id = null;
+                        $student->save();
+
+                    }
+
+                    if($error === "internship_date_error"){
+                        $student = Student::findOrFail($id);
+                        $student->internship_start_date = null;
+                        $student->internship_end_date = null;
+                        $student->internship_type = 1;
+                        $student->save();
+                    }
+                }
+            }
+
+
+            /*
+             *  Buraya eposta ile bilgilendirme gelecek.
+             *
+             *
+             */
+
+            return back()->with('rejection', 'Red ediliş gerekçesi öğrenciye iletildi!');
+
+
+        } else {
+
+            $student = Student::findOrFail($id);
+            $student->internship_status = 3;
+            $student->save();
+
+            return back()->with('success', 'Öğrencinin staj durumu başarılı bir şekilde onaylandı.');
+
+        }
+
     }
 
     /**
@@ -101,13 +166,22 @@ class StudentController extends Controller
     public function passwordReset($id)
     {
 
-        echo "tamam";
+        $characters = "abcdefghijklmnoprstuvyzABCDEFGHIJKLMNOPRSTUVYZ0123456789!+$&=";
+        $password = substr(str_shuffle($characters), 0, 9);
+
+        Mail::send('student.password', compact('password'), function ($message) {
+            $message->to('staj@trends.com.tr')->subject('Şifreniz sıfırlandı');
+            $message->from('staj@trends.com.tr', 'Staj Takip Sistemi');
+        });
+
+        $user = User::findOrFail($id);
+        $user->password = Hash::make($password);
+        $user->save();
 
     }
 
     public function searchBusiness(Request $request)
     {
-
 
         if ($request->ajax()) {
             $businesses = Business::where('business_name', 'LIKE', '%' . $request->search . "%")->get();
@@ -119,6 +193,24 @@ class StudentController extends Controller
             $json = json_encode(array('bos' => 0));;
         }
         return $json;
+
+    }
+
+    public function internshipRemoval($id){
+
+        $studentModel['internship_start_date'] = null;
+        $studentModel['internship_end_date'] = null;
+        $studentModel['internship_status'] = 1;
+        $studentModel['internship_type'] = 1;
+        $studentModel['business_id'] = null;
+
+        Student::where('id', $id)->update($studentModel);
+
+        RejectionReason::where('student_id', $id)->delete();
+        Documents::where('student_number_id', $id)->delete();
+        Errors::where('student_id', $id)->delete();
+
+        // Öğrenciye sıfırlandığına dair email gönderilmesi...
 
     }
 

@@ -1,0 +1,4 @@
+internship_status = 1 başvurusu yapılmamış staj durumu
+internship_status = 2 başvurusu yapılmış staj durumu
+internship_status = 3 başvurusu onaylanmış staj durumu
+internship_status = 4 red edilmiş staj durumu

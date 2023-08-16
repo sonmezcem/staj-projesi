@@ -268,9 +268,7 @@
 
 
                             <div class="item form-group">
-
                                 <div class="col-md-6 col-sm-6 offset-md-3">
-
                                     <button type="submit" class="btn btn-success">Fakülte Onayına Gönder</button>
                                 </div>
                             </div>

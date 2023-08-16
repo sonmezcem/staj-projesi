@@ -24,6 +24,11 @@
 
 <!-- sweet alert-->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- popup-js -->
+{{--
+<script src="https://cdn.jsdelivr.net/npm/@simondmc/popup-js@1.4.2/popup.min.js"></script>
+--}}
+
 <!-- Custom Theme Scripts -->
 <script src="{{URL::to('/js/custom.min.js')}}"></script>
 <script src="{{URL::to('/js/bizim.min.js')}}"></script>

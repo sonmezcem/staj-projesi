@@ -2,12 +2,19 @@
     <div class="menu_section">
         <h3>Menu</h3>
         <ul class="nav side-menu">
-            <li><a href="{{URL::to('student')}}"><i class="fa fa-home"></i> Anasayfa </a>
-            </li>
-            <li><a href="{{URL::to('student/application-form')}}"><i class="fa fa-edit"></i>Staj Başvuru Formu</a>
-            </li>
-            <li><a href="{{URL::to('student/find-me-business')}}"><i class="fa fa-exclamation"></i>Staj Yeri Bulamadım</a>
-            </li>
+                @if($student->internship_status === 1)
+                    <li><a href="{{URL::to('student')}}"><i class="fa fa-home"></i> Anasayfa </a>
+                    <li><a href="{{URL::to('student/application-form')}}"><i class="fa fa-edit"></i>Staj Başvuru Formu</a></li>
+                    <li><a href="{{URL::to('student/find-me-business')}}"><i class="fa fa-exclamation"></i>Staj Yeri Bulamadım</a></li>
+                @elseif($student->internship_status === 2)
+
+                    <li><a href="{{URL::to('student')}}"><i class="fa fa-home"></i> Anasayfa </a></li>
+
+
+                @else
+
+                <li><a href="{{URL::to('student')}}"><i class="fa fa-home"></i> Anasayfa </a></li>
+            @endif
 
 
             {{--

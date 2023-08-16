@@ -19,54 +19,13 @@
                 <div class="clearfix"></div>
 
                 <!-- menu profile quick info -->
-                <div class="profile clearfix">
-                    <div class="profile_pic">
-                        <img src="{{url('')}}/images/user.jpg" alt="..." class="img-circle profile_img">
-                    </div>
-                    <div class="profile_info">
-                        <span>Hoşgeldiniz,</span>
-                        <h2>{{ Auth::user()->name . ' ' . Auth::user()->surname   }} {{--{{$user->name . ' ' . $user->surname}}--}}</h2>
-                    </div>
-                </div>
-
+                @include('officer.common.menu-profile')
                 <!-- /menu profile quick info -->
 
                 <br/>
 
                 <!-- sidebar menu -->
-                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                    <div class="menu_section">
-                        <h3>Menu</h3>
-                        <ul class="nav side-menu">
-                            <li><a><i class="fa fa-home"></i> Anasayfa <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="bos-yetki.html">Tüm Tablolar</a></li>
-                                </ul>
-                            </li>
-                            <li><a><i class="fa fa-edit"></i> Yetkililer <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="yetkili-tablo.html">Yetkili Düzenleme</a></li>
-                                    <li><a href="yetkili-ekle.html">Yetkili Ekle</a></li>
-
-                                </ul>
-
-                            </li>
-                            <li><a><i class="fa fa-exclamation"></i>Öğrenciler<span
-                                        class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="ogrenci-tablo.html">Öğrenci Düzenleme</a></li>
-                                </ul>
-
-                            </li>
-                            <li><a><i class="fa fa-exclamation"></i>İşletmeler<span
-                                        class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="isletme-tablo.html">İşletme Düzenleme</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                @include('officer.common.sidebar')
                 <!-- /sidebar menu -->
 
 
@@ -113,8 +72,160 @@
         <div class="right_col" role="main">
 
             <div class="row">
+                <div class="col-md-12 col-sm-12 ">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>İşletmeler</h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li>
+                                    <a href="#isletme-ekle"><i class="fa fa-plus"> İşletme Ekle</i> </a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card-box table-responsive overflow-x-hidden">
+                                        <p class="text-muted font-13 m-b-30">
+                                            İşlem yapmak istediğiniz işletmeyi aşağıdan seçebilir yada sağ taraftaki
+                                            arama bölümünden arayarak bulabilirsiniz.
+                                        </p>
+                                        <table id="isletmeler" class="table table-striped table-bordered"
+                                               style="width:100%">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>İşletme Adı</th>
+                                                <th>İşletme Adresi</th>
+                                                <th>İşletme Telefon Numarası</th>
+                                                <th>Kontenjan</th>
+                                                <th>Düzenle</th>
+                                            </tr>
+                                            </thead>
 
 
+                                            <tbody>
+                                            @foreach($businesses as $business)
+                                                <tr>
+                                                    <td>{{$business->id}}</td>
+                                                    <td>{{$business->business_name}}</td>
+                                                    <td>{{$business->business_address}}</td>
+                                                    <td>{{$business->business_phone}}</td>
+                                                    <td>{{$business->quota}}</td>
+                                                    <td>
+                                                        <div class="d-flex">
+                                                            <a href="{{route('admin.businesses.edit', $business->id)}}"
+                                                               class="btn btn-info text-light">Düzenle</a>
+                                                            <form
+                                                                id="isletme-{{$business->id}}"
+                                                                action="{{route('admin.businesses.destroy', $business->id)}}"
+                                                                method="POST"
+                                                            >
+                                                                @csrf
+                                                                @method('DELETE')
+
+                                                                <button type="submit"
+                                                                        class="btn btn-danger text-light"
+                                                                        onclick="isletmeSilme({{$business->id}})">Sil
+                                                                </button>
+                                                            </form>
+                                                        </div>
+
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 ">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Öğrenciler</h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li>
+                                    <a href="#ogrenci-ekle"><i class="fa fa-plus"> Öğrenci Ekle</i> </a>
+                                </li>
+                            </ul>
+
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card-box table-responsive">
+                                        <p class="text-muted font-13 m-b-30">
+                                            İşlem yapmak istediğiniz öğrenciyi aşağıdan seçebilir yada sağ taraftaki
+                                            arama bölümünden arayarak bulabilirsiniz.
+                                        </p>
+                                        <table id="ogrenciler" class="table table-striped table-bordered"
+                                               style="width:100%">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Ad</th>
+                                                <th>Soyad</th>
+                                                <th>Telefon</th>
+                                                <th>Eposta</th>
+                                                <th>İşletme Adı</th>
+                                                <th>Staj Başlangıç Tarihi</th>
+                                                <th>Staj Bitiş Tarihi</th>
+                                                <th>Düzenle</th>
+                                            </tr>
+                                            </thead>
+
+
+                                            <tbody>
+                                            @foreach($students as $user)
+
+                                                <tr>
+                                                    <th scope="row">{{$user->id}}</th>
+                                                    <td>{{$user->user->name}}</td>
+                                                    <td>{{$user->user->surname}}</td>
+                                                    <td>{{$user->user->phone}}</td>
+                                                    <td>{{$user->user->email}}</td>
+                                                    <td>@if(isset($user->business->business_name))
+                                                            {{$user->business->business_name}}
+                                                        @else
+                                                            {{"İşletmesi yok"}}
+                                                        @endif
+                                                    </td>
+                                                    <td>{{$user->internship_start_date}}</td>
+                                                    <td>{{$user->internship_end_date}}</td>
+                                                    <td>
+                                                        <div class="d-flex">
+                                                            <a href="{{route('admin.students.edit', $user->id)}}"
+                                                               class="btn btn-primary text-light">İncele</a>
+                                                            <form
+                                                                id="ogrenciSilme-{{$user->id}}"
+                                                                action="{{route('admin.students.destroy', $user->id)}}"
+                                                                method="POST"
+                                                            >
+                                                                @csrf
+                                                                @method('DELETE')
+
+                                                                <button type="submit"
+                                                                        class="btn btn-danger text-light"
+                                                                        onclick="ogrenciSilme-({{$user->id}})">Sil
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -131,33 +242,6 @@
         <!-- /footer content -->
     </div>
 </div>
-
-<!-- jQuery -->
-<script src="{{url('')}}/js/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="{{url('')}}/js/bootstrap.bundle.min.js"></script>
-<!-- FastClick -->
-<script src="{{url('')}}/js/fastclick.js"></script>
-<!-- NProgress -->
-<script src="{{url('')}}/js/nprogress.js"></script>
-<!-- bootstrap-progressbar -->
-<script src="{{url('')}}/js/bootstrap-progressbar.min.js"></script>
-<!-- iCheck -->
-<script src="{{url('')}}/js/icheck.min.js"></script>
-<!-- Skycons -->
-<script src="{{url('')}}/js/skycons.js"></script>
-<!-- DateJS -->
-<script src="{{url('')}}/js/date.js"></script>
-<!-- bootstrap-daterangepicker -->
-<script src="{{url('')}}/js/moment.min.js"></script>
-<script src="{{url('')}}/js/daterangepicker.js"></script>
-
-<!-- datatable -->
-<script src="{{url('')}}/js/jquery.dataTables.min.js"></script>
-
-<!-- Custom Theme Scripts -->
-<script src="{{url('')}}/js/custom.min.js"></script>
-<script src="{{url('')}}/js/bizim.min.js"></script>
-
+@include('officer.common.js')
 </body>
 </html>
