@@ -197,7 +197,11 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        echo "tamammi";
+/*        $statusUpdate = ['status' => 0];
+        $business = new Student();
+        $business->where('id', $id)->update($statusUpdate);
+
+        return back()->with('success','İşletme başarılı bir şekilde silindi!');*/
     }
 
     public function passwordReset($id)

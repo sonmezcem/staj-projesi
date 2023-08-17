@@ -115,11 +115,11 @@
                                                     <td>{{$business->quota}}</td>
                                                     <td>
                                                         <div class="d-flex">
-                                                            <a href="{{route('admin.businesses.edit', $business->id)}}"
+                                                            <a href="{{route('officer.businesses.edit', $business->id)}}"
                                                                class="btn btn-info text-light">Düzenle</a>
                                                             <form
                                                                 id="isletme-{{$business->id}}"
-                                                                action="{{route('admin.businesses.destroy', $business->id)}}"
+                                                                action="{{route('officer.businesses.destroy', $business->id)}}"
                                                                 method="POST"
                                                             >
                                                                 @csrf
@@ -199,11 +199,11 @@
                                                     <td>{{$user->internship_end_date}}</td>
                                                     <td>
                                                         <div class="d-flex">
-                                                            <a href="{{route('admin.students.edit', $user->id)}}"
+                                                            <a href="{{route('officer.students.edit', $user->id)}}"
                                                                class="btn btn-primary text-light">İncele</a>
                                                             <form
                                                                 id="ogrenciSilme-{{$user->id}}"
-                                                                action="{{route('admin.students.destroy', $user->id)}}"
+                                                                action="{{route('officer.students.destroy', $user->id)}}"
                                                                 method="POST"
                                                             >
                                                                 @csrf

@@ -79,7 +79,7 @@
                                     <td>{{$business->business_name}}</td>
                                     <td>{{$business->business_address}}</td>
                                     <td>{{$business->business_phone}}</td>
-                                    <td>{{$business->business_quota}}</td>
+                                    <td>{{$business->quota}}</td>
                                     <td>
                                         <div class="d-flex">
                                             <a href="{{route('officer.businesses.edit', $business->id)}}"
