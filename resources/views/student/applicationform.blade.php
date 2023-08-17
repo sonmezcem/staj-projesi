@@ -243,7 +243,7 @@
                                 <div class="clearfix"></div>
                             </div>
 
-                            {{--{{$documentTypes}}--}}
+                            {{$documentTypes}}
 
                             @foreach($documentTypes as $documentType)
 

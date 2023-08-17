@@ -41,7 +41,8 @@ class AuthenticatedSessionController extends Controller
         {
             return redirect()->route('student.index');
         }else{
-            return redirect()->route('dashboard');
+            //return redirect()->route('dashboard');
+            return redirect()->route('student.index');
         }
 
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Officer;
 
 use App\Http\Controllers\Controller;
 use App\Models\Business;
@@ -11,8 +11,8 @@ use App\Models\RejectionReason;
 use App\Models\Student;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
@@ -23,12 +23,6 @@ class StudentController extends Controller
      */
     public function index()
     {
-
-        /*        $students = Student::with('user.user')
-                    ->with('business.business')
-                    ->get()
-                ;*/
-
         $status = 1;
 
         $students = Student::query()
@@ -38,7 +32,7 @@ class StudentController extends Controller
             })
             ->paginate(10);
 
-        return view('admin.student.index', compact('students'));
+        return view('officer.student.index', compact('students'));
 
     }
 
@@ -81,7 +75,7 @@ class StudentController extends Controller
             ->get()
             ->find($id);
 
-        return view("admin.student.edit", compact('user', 'documentTypes'));
+        return view("officer.student.edit", compact('user', 'documentTypes'));
 
     }
 
@@ -90,8 +84,6 @@ class StudentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
-
         $business = $request->validate([
             'business.*' => ''
         ]);
@@ -197,7 +189,7 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        echo "tamammi";
+        //
     }
 
     public function passwordReset($id)
@@ -226,10 +218,10 @@ class StudentController extends Controller
 
         if (isset($businesses[0])) {
             $json = json_encode(array(
-                'id' => $businesses[0]->id,
-                'business_name' => $businesses[0]->business_name,
-                'business_address' => $businesses[0]->business_address,
-                'business_phone' => $businesses[0]->business_phone)
+                    'id' => $businesses[0]->id,
+                    'business_name' => $businesses[0]->business_name,
+                    'business_address' => $businesses[0]->business_address,
+                    'business_phone' => $businesses[0]->business_phone)
             );
         } else {
             $json = json_encode(array('bos' => 0));

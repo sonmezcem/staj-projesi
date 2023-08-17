@@ -61,12 +61,17 @@ Route::middleware(['auth', 'role:Yönetici'])->name('admin.')->prefix('admin')->
     Route::resource('/documents', DocumentController::class);
     Route::resource('/documenttypes', DocumentTypesController::class);
     Route::post('/internship-removal/{id}', [StudentController::class, 'internshipRemoval']);
-
-
+    Route::post('/image-removal/{id}', [StudentController::class, 'imageRemoval'])->name('imageRemoval');
 });
 
 Route::middleware(['auth', 'role:Yetkili'])->name('officer.')->prefix('officer')->group(function () {
     Route::get('/', [\App\Http\Controllers\Officer\OfficerController::class, 'index'])->name('index');
+    Route::resource('/businesses', \App\Http\Controllers\Officer\BusinessController::class);
+    Route::resource('/students', \App\Http\Controllers\Officer\StudentController::class);
+    Route::get('/business-search', [StudentController::class, 'searchBusiness']);
+    Route::post('/students/password-reset/{id}', 'App\Http\Controllers\Admin\StudentController@passwordReset');
+    Route::post('/internship-removal/{id}', [\App\Http\Controllers\Officer\StudentController::class, 'internshipRemoval']);
+    Route::post('/image-removal/{id}', [\App\Http\Controllers\Officer\StudentController::class, 'imageRemoval'])->name('imageRemoval');
 });
 
 

@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Officer;
 
 use App\Http\Controllers\Controller;
 use App\Models\Business;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Bus;
 
 class BusinessController extends Controller
 {
@@ -16,8 +15,7 @@ class BusinessController extends Controller
     {
         $businesses = Business::where('status', 1)->paginate(10);
 
-        return view('admin.business.index', compact('businesses'));
-
+        return view('officer.business.index', compact('businesses'));
     }
 
     /**
@@ -25,7 +23,8 @@ class BusinessController extends Controller
      */
     public function create()
     {
-        return view('admin.business.create');
+        return view('officer.business.create');
+
     }
 
     /**
@@ -47,7 +46,7 @@ class BusinessController extends Controller
 
         $businesses = Business::where('status', 1)->paginate(10);
 
-        return view('admin.business.index', compact('businesses'))->with('success','İşletme başarılı bir şekilde eklendi!');
+        return view('officer.business.index', compact('businesses'))->with('success','İşletme başarılı bir şekilde eklendi!');
 
     }
 
@@ -66,7 +65,7 @@ class BusinessController extends Controller
     {
         $business = Business::find($id);
 
-        return view("admin.business.edit",compact('business'));
+        return view("officer.business.edit",compact('business'));
 
     }
 
@@ -75,7 +74,6 @@ class BusinessController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
         $validated = $request->validate(
             [
                 'business_name' => ['required'],

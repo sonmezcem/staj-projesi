@@ -291,7 +291,7 @@
                     <div class="x_content">
                         <div class="item form-group">
                             <div class="col-md-6 col-sm-6 offset-md-3">
-                                <button type="submit" class="btn btn-success">Tekrar Başvurrr</button>
+                                <button type="submit" class="btn btn-success">Tekrar Başvur</button>
                             </div>
                         </div>
                     </div>

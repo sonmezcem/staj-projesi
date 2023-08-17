@@ -18,13 +18,13 @@
                 <div class="clearfix"></div>
 
                 <!-- menu profile quick info -->
-                @include('admin.common.menu-profile')
+                @include('officer.common.menu-profile')
                 <!-- /menu profile quick info -->
 
                 <br/>
 
                 <!-- sidebar menu -->
-                @include('admin.common.sidebar')
+                @include('officer.common.sidebar')
                 <!-- /sidebar menu -->
 
 
@@ -32,7 +32,7 @@
         </div>
 
         <!-- top navigation -->
-        @include('admin.common.top-navigation')
+        @include('officer.common.top-navigation')
         <!-- /top navigation -->
 
         <!-- page content -->
@@ -68,7 +68,7 @@
                     <div class="x_content">
                         <br>
                         <form class="form-horizontal form-label-left" method="POST"
-                              action="{{ route('admin.students.update', $user->id  ) }}">
+                              action="{{ route('officer.students.update', $user->id  ) }}">
                             @method('PUT')
                             @csrf
                             <div class="form-group row">
@@ -455,7 +455,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-9 offset-md-3">
-                                    <a href="{{ route('admin.officers.index')}}" type=""
+                                    <a href="{{ route('officer.index')}}" type=""
                                        class="btn btn-primary">İptal</a>
                                     <button type="submit" class="btn btn-success">Güncelle</button>
                                     <a href="#"
@@ -484,7 +484,7 @@
     <div class="clearfix"></div>
 </footer>
 <!-- /footer content -->
-@include('admin.common.js')
+@include('officer.common.js')
 <script>
     function parolaGonder(id) {
         var formData = {
@@ -497,7 +497,7 @@
         });
         $.ajax({
             type: "POST",
-            url: "{{URL('/admin/students/password-reset/')}}" + "/" + id,
+            url: "{{URL('/officer/students/password-reset/')}}" + "/" + id,
             data: formData,
             dataType: "json",
             encode: true,
@@ -524,7 +524,7 @@
         });
         $.ajax({
             type: "GET",
-            url: "{{URL::to('/admin/student-search')}}",
+            url: "{{URL::to('/officer/business-search')}}",
             data: formData,
             dataType: "json",
             encode: true,
@@ -604,7 +604,7 @@
                 });
                 $.ajax({
                     type: "POST",
-                    url: "{{URL::to('/admin/internship-removal')}}" + '/' + id,
+                    url: "{{URL::to('/officer/internship-removal')}}" + '/' + id,
                     dataType: "json",
                     encode: true,
                 })
@@ -629,7 +629,7 @@
             confirmButtonText: 'Evet, sil!'
         }).then((result) => {
             if (result.isConfirmed) {
-                let url = "{{route('admin.imageRemoval', ':id')}}";
+                let url = "{{route('officer.imageRemoval', ':id')}}";
                 url = url.replace(':id', id);
                 Swal.fire(
                     'Silindi!',

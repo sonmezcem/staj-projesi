@@ -406,7 +406,7 @@ class StudentController extends Controller
         $student = Student::all()->where('user_id', Auth::user()->id)->first();
 
         $business = Business::where('id', $id)->first();
-        $documentTypes = DocumentTypes::all();
+        $documentTypes = DocumentTypes::all()->where('status', 1);
 
         return view('student.apply', compact('student', 'documentTypes', 'business'));
 
