@@ -40,6 +40,7 @@ class BusinessController extends Controller
                 'quota' => ['required','numeric'],
             ]);
 
+        $validated['applicants'] = 1;
         $validated['status'] = 1;
 
         Business::create($validated);
