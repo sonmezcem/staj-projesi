@@ -27,6 +27,8 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/login', [HomeController::class, 'index'])->name('index');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

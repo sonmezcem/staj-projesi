@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -12,6 +12,23 @@ class HomeController extends Controller
         return view('myCaptcha');
     }
 
+    public function index()
+    {
+        if (Auth::check()) {
+
+            if (Auth::user()->hasRole('Yönetici')) {
+                return redirect()->route('admin.index');
+            } else if (Auth::user()->hasRole('Yetkili')) {
+                return redirect()->route('officer.index');
+            } else if (Auth::user()->hasRole('Öğrenci')) {
+                return redirect()->route('student.index');
+            } else {
+                return redirect()->route('index');
+            }
+        } else {
+            return redirect()->route('index');
+        }
+    }
 
     /**
      * Create a new controller instance.
@@ -25,7 +42,7 @@ class HomeController extends Controller
             'password' => 'required',
             'captcha' => 'required|captcha'
         ],
-            ['captcha.captcha'=>'Invalid captcha code.']);
+            ['captcha.captcha' => 'Invalid captcha code.']);
         dd("You are here :) .");
     }
 
@@ -37,7 +54,7 @@ class HomeController extends Controller
      */
     public function refreshCaptcha()
     {
-        return response()->json(['captcha'=> captcha_img()]);
+        return response()->json(['captcha' => captcha_img()]);
     }
 
 

@@ -42,6 +42,6 @@
     font-size: 12px;
     margin: 10px 15px 0 0;
 }
-.left_col{
+.left_col, .nav_title, body{
     background: #00283d;
 }
