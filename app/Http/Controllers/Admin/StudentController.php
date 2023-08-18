@@ -145,7 +145,6 @@ class StudentController extends Controller
                     if($error === "business_error"){
 
                         $student = Student::findOrFail($id);
-                        $student->business_id = null;
                         $student->save();
 
                     }
