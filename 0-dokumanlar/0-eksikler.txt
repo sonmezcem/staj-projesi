@@ -40,3 +40,6 @@ findmebusiness de problem var giderilmesi..
 Admin students/edit sayfasında yani öğrenci düzenleme sayfasında. Lütfen, problemleri seçiniz bölümündeki tiklerin dinamik bir şekilde seçili gelmesi.
 Öğrenci staj yerine kabul edildiğinde applicants sayısının 1 arttırılması tamamlandığında ise 1 azaltılması.
 $student['internship_type'] = 1; /// seçilene göre olacak... 1 Zorunlu 2 Gönüllü
+-----------
+YENİ BUGLAR
+-----------
