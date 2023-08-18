@@ -82,7 +82,7 @@
                             <h2>Yetkililer</h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li>
-                                    <a href="{{--{{route('admin.officer.create')}}--}}"><i class="fa fa-plus"> Yetkili
+                                    <a href="{{URL::to('admin/officers/create')}}"><i class="fa fa-plus"> Yetkili
                                             Ekle</i> </a>
                                 </li>
                             </ul>
@@ -154,7 +154,7 @@
                             <h2>İşletmeler</h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li>
-                                    <a href="#isletme-ekle"><i class="fa fa-plus"> İşletme Ekle</i> </a>
+                                    <a href="{{URL::to('admin/businesses/create')}}"><i class="fa fa-plus"> İşletme Ekle</i> </a>
                                 </li>
                             </ul>
                             <div class="clearfix"></div>
@@ -224,12 +224,6 @@
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>Öğrenciler</h2>
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li>
-                                    <a href="#ogrenci-ekle"><i class="fa fa-plus"> Öğrenci Ekle</i> </a>
-                                </li>
-                            </ul>
-
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
@@ -278,6 +272,7 @@
                                                         <div class="d-flex">
                                                             <a href="{{route('admin.students.edit', $user->id)}}"
                                                                class="btn btn-primary text-light">İncele</a>
+{{--
                                                             <form
                                                                 id="ogrenciSilme-{{$user->id}}"
                                                                 action="{{route('admin.students.destroy', $user->id)}}"
@@ -291,6 +286,7 @@
                                                                         onclick="ogrenciSilme-({{$user->id}})">Sil
                                                                 </button>
                                                             </form>
+--}}
                                                         </div>
                                                     </td>
                                                 </tr>

@@ -71,9 +71,8 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-3"></label>
                                 <div class="col-md-9 col-sm-9 col-xs-9 text-center">
                                     <img class="img-responsive avatar-view rounded-circle"
-                                         src="{{$user->user->profile_picture}}" alt="Avatar" title="Change the avatar">
-                                    <br>
-                                    {{$user->user->name . " " . $user->user->surname }}
+                                         src="{{$user->user->profile_picture}}" alt="Avatar" title="Change the avatar" width="150">
+                                    <br>{{$user->user->name . " " . $user->user->surname }}
                                 </div>
                             </div>
                             <div class="form-group row">

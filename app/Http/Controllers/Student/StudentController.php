@@ -119,7 +119,7 @@ class StudentController extends Controller
 
             $allFiles[] = $request->validate([
 
-                $documentType['document_slug'] => ['required', 'mimes:docx,jpg']
+                $documentType['document_slug'] => ['required', 'mimes:docx,jpg,png,pdf']
 
             ]);
         }
@@ -252,7 +252,7 @@ class StudentController extends Controller
 
                 $allFiles[] = $request->validate([
 
-                    $documentType['document_slug'] => ['required', 'mimes:docx,jpg']
+                    $documentType['document_slug'] => ['required', 'mimes:docx,jpg,png,pdf']
 
                 ]);
             }
@@ -467,7 +467,7 @@ class StudentController extends Controller
 
                 $allFiles[] = $request->validate([
 
-                    $documentType['document_slug'] => ['required', 'mimes:docx,jpg']
+                    $documentType['document_slug'] => ['required', 'mimes:docx,jpg,png,pdf']
 
                 ]);
             }

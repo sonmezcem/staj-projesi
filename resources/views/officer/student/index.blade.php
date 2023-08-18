@@ -49,8 +49,7 @@
                 @endif
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Tüm Yetkililer <small>Yetkilileri düzenlemek için ilgili yetkilinin sağ tarafındaki düzenle
-                                butonuna tıklayabilirsiniz.</small></h2>
+                        <h2>Tüm Öğrenciler</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li>
                                 <a href="{{--{{route('admin.officer.create')}}--}}"><i class="fa fa-plus"> Yetkili

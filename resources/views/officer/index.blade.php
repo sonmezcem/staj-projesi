@@ -74,7 +74,7 @@
                             <h2>İşletmeler</h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li>
-                                    <a href="#isletme-ekle"><i class="fa fa-plus"> İşletme Ekle</i> </a>
+                                    <a href="{{URL::to('officer/businesses/create')}}"><i class="fa fa-plus"> İşletme Ekle</i> </a>
                                 </li>
                             </ul>
                             <div class="clearfix"></div>
@@ -143,12 +143,6 @@
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>Öğrenciler</h2>
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li>
-                                    <a href="#ogrenci-ekle"><i class="fa fa-plus"> Öğrenci Ekle</i> </a>
-                                </li>
-                            </ul>
-
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
