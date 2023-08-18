@@ -7,11 +7,7 @@
     <div class="main_container">
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
-                <div class="navbar nav_title" style="border: 0;">
-                    <a href="{{url('')}}" class="site_title"><img src="{{url('')}}/images/firat_logo.gif" width="45"
-                                                                  height="45"></i> <span>Fırat Üniversitesi</span></a>
-                </div>
-
+                @include('officer.common.logo')
                 @if(isset($user->user_type) && $user->user_type === 3)
 
                 @endif

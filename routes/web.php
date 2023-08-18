@@ -24,12 +24,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-Route::get('/deneme', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -37,13 +34,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/admin', function () {
+/*Route::get('/admin', function () {
     return view('admin.index');
 })->middleware('auth', 'role:Yönetici')->name('admin.index');
 
 Route::get('/officer', function () {
     return view('officer.index');
-})->middleware('auth', 'role:Yetkili')->name('officer.index');
+})->middleware('auth', 'role:Yetkili')->name('officer.index');*/
 
 /*Route::get('/student', function () {
     return view('student.index');

@@ -6,10 +6,7 @@
     <div class="main_container">
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
-                <div class="navbar nav_title" style="border: 0;">
-                    <a href="{{url('')}}" class="site_title"><img src="{{url('')}}/images/firat_logo.gif" width="45"
-                                                                  height="45"></i> <span>Fırat Üniversitesi</span></a>
-                </div>
+                @include('officer.common.logo')
                 <div class="clearfix"></div>
 
                 <!-- menu profile quick info -->
@@ -55,7 +52,8 @@
                             <div class="form-group row">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-3">İşletme adı</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
-                                    <input type="text" class="form-control" name="business_name" value="{{old('business_name')}}">
+                                    <input type="text" class="form-control" name="business_name"
+                                           value="{{old('business_name')}}">
                                     <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                                     @error('business_name') <span class="red">{{ $message }}</span> @enderror
                                 </div>
@@ -63,7 +61,8 @@
                             <div class="form-group row">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-3">İşletme Adresi</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
-                                    <input type="text" class="form-control" name="business_address" value="{{old('business_address')}}">
+                                    <input type="text" class="form-control" name="business_address"
+                                           value="{{old('business_address')}}">
                                     <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                                     @error('business_address') <span class="red">{{ $message }}</span> @enderror
                                 </div>
@@ -71,7 +70,8 @@
                             <div class="form-group row">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-3">İşletme Telefonu</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
-                                    <input type="number" class="form-control" name="business_phone" value="{{old('business_phone')}}">
+                                    <input type="number" class="form-control" name="business_phone"
+                                           value="{{old('business_phone')}}">
                                     <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                                     @error('business_phone') <span class="red">{{ $message }}</span> @enderror
                                 </div>
@@ -88,7 +88,8 @@
 
                             <div class="form-group row">
                                 <div class="col-md-9 offset-md-3">
-                                    <a href="{{ route('officer.businesses.index')}}" type="" class="btn btn-primary flex">İptal</a>
+                                    <a href="{{ route('officer.businesses.index')}}" type=""
+                                       class="btn btn-primary flex">İptal</a>
                                     <button type="submit" class="btn btn-success">İşletme Oluştur</button>
                                 </div>
                             </div>

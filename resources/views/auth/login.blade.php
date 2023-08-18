@@ -54,8 +54,11 @@
                     </div>
 
                     <div>
+                        <button class="btn btn-default submit btn-a">Giriş Yap</button>
+{{--
                         <a class="btn btn-default submit" href="#" id="girisYap">Giriş Yap</a>
-                        <a class="reset_pass" href="{{ route('password.request') }}">Şifremi Unuttum ?</a>
+--}}
+                        <a class="btn btn-default submit btn-a" href="{{ route('password.request') }}">Şifremi Unuttum ?</a>
                     </div>
 
                     <div class="clearfix"></div>
@@ -78,11 +81,6 @@
         </div>
     </div>
 </div>
-<script>
-    document.getElementById("girisYap").onclick = function () {
-        document.getElementById("girisFormu").submit();
-    }
-</script>
 </body>
 </html>
 

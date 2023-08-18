@@ -33,7 +33,7 @@
                                                 <tbody><tr>
                                                     <td bgcolor="#EBEEEF" width="100" align="center" style="padding:0 0 12px">
                                                         <a href="https://www.firat.edu.tr/tr" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.letgo.com&amp;source=gmail&amp;ust=1691060407288000&amp;usg=AOvVaw185f58LiEZKacnX5XKFvQe">
-                                                            <img alt="firat" src="../ayiklanmis-tema/images/sekme-logo.png" width="66" height="65" style="margin:0 auto;display:block;font-family:'Poppins',sans-serif;color:#ffffff;font-size:16px" border="0" class="CToWUd" data-bit="iit">
+                                                            <img alt="firat" src="https://www.firat.edu.tr/front/images/firat_orj_b.png" width="66" height="65" style="margin:0 auto;display:block;font-family:'Poppins',sans-serif;color:#ffffff;font-size:16px" border="0" class="CToWUd" data-bit="iit">
                                                         </a>
                                                     </td>
                                                 </tr>

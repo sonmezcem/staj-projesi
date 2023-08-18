@@ -6,11 +6,7 @@
     <div class="main_container">
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
-                <div class="navbar nav_title" style="border: 0;">
-                    <a href="{{url('')}}" class="site_title"><img src="{{url('')}}/images/firat_logo.gif" width="45"
-                                                                  height="45"></i> <span>Fırat Üniversitesi</span></a>
-                </div>
-
+                @include('officer.common.logo')
                 @if(isset($user->user_type) && $user->user_type === 3)
 
                 @endif
@@ -63,7 +59,8 @@
                             <div class="form-group row">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-3">İşletme Adı</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
-                                    <input type="text" class="form-control" name="business_name" value="{{$business->business_name}}">
+                                    <input type="text" class="form-control" name="business_name"
+                                           value="{{$business->business_name}}">
                                     <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                                     @error('business_name') <span class="red">{{ $message }}</span> @enderror
                                 </div>
@@ -71,7 +68,8 @@
                             <div class="form-group row">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-3">Adresi</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
-                                    <input type="text" class="form-control" name="business_address" value="{{$business->business_address}}">
+                                    <input type="text" class="form-control" name="business_address"
+                                           value="{{$business->business_address}}">
                                     <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                                     @error('business_address') <span class="red">{{ $message }}</span> @enderror
                                 </div>
@@ -79,7 +77,8 @@
                             <div class="form-group row">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-3">Telefonu</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
-                                    <input type="text" class="form-control" name="business_phone" value="{{$business->business_phone}}">
+                                    <input type="text" class="form-control" name="business_phone"
+                                           value="{{$business->business_phone}}">
                                     <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                                     @error('business_phone') <span class="red">{{ $message }}</span> @enderror
                                 </div>

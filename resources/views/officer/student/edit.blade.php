@@ -6,11 +6,7 @@
     <div class="main_container">
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
-                <div class="navbar nav_title" style="border: 0;">
-                    <a href="{{url('')}}" class="site_title"><img src="{{url('')}}/images/firat_logo.gif" width="45"
-                                                                  height="45"></i> <span>Fırat Üniversitesi</span></a>
-                </div>
-
+                @include('officer.common.logo')
                 @if(isset($user->user_type) && $user->user_type === 3)
 
                 @endif
@@ -408,48 +404,48 @@
                                         Belgeler ile ilgili sorun.
                                     </label>
                                     @error('errors') <br><span class="red">{{ $message }}</span> @enderror
-{{--
-                                    @foreach($user->error as $rejectionError)
+                                    {{--
+                                                                        @foreach($user->error as $rejectionError)
 
-                                        @switch(isset($rejectionError->problem))
-                                            @case($rejectionError->problem === "business_error")
-                                                {{$rejectionError->problem}}
-                                                @break
-                                            @case($rejectionError->problem === "internship_date_error")
-                                                {{$rejectionError->problem}}
-                                                @break
-                                            @case($rejectionError->problem === "documents_error")
-                                                {{$rejectionError->problem}}
-                                                @break
-                                            @default
-                                        @endswitch
---}}
+                                                                            @switch(isset($rejectionError->problem))
+                                                                                @case($rejectionError->problem === "business_error")
+                                                                                    {{$rejectionError->problem}}
+                                                                                    @break
+                                                                                @case($rejectionError->problem === "internship_date_error")
+                                                                                    {{$rejectionError->problem}}
+                                                                                    @break
+                                                                                @case($rejectionError->problem === "documents_error")
+                                                                                    {{$rejectionError->problem}}
+                                                                                    @break
+                                                                                @default
+                                                                            @endswitch
+                                    --}}
 
 
 
-                                        {{--
-                                @if($rejectionError->problem === "business_error")
-                                        {{$rejectionError->problem}}
-                                    @endif
-                                    @if($rejectionError->problem === "internship_date_error")
-                                        {{$rejectionError->problem}}
-                                    @endif
-                                    @if($rejectionError->problem === "documents_error")
-                                        {{$rejectionError->problem}}
-                                    @endif
+                                    {{--
+                            @if($rejectionError->problem === "business_error")
+                                    {{$rejectionError->problem}}
+                                @endif
+                                @if($rejectionError->problem === "internship_date_error")
+                                    {{$rejectionError->problem}}
+                                @endif
+                                @if($rejectionError->problem === "documents_error")
+                                    {{$rejectionError->problem}}
+                                @endif
 --}}
                                     {{--@endforeach--}}
 
                                     {{--/// eğer işaretli değilse nasıl olacak onu yapacağız.--}}
-{{--
-                                    @switch(!isset($rejectionError->problem))
-                                        @case(empty($rejectionError->problem))
-                                            {{$user}}
-                                            @break
-                                        @default
-                                            {{$user}}
-                                    @endswitch
---}}
+                                    {{--
+                                                                        @switch(!isset($rejectionError->problem))
+                                                                            @case(empty($rejectionError->problem))
+                                                                                {{$user}}
+                                                                                @break
+                                                                            @default
+                                                                                {{$user}}
+                                                                        @endswitch
+                                    --}}
                                 </div>
 
                             </div>

@@ -55,6 +55,11 @@ class OfficerController extends Controller
             $message->from('staj@trends.com.tr', 'Staj Takip Sistemi Yönetim');
         });
 
+        /*
+         * $message->to('staj@trends.com.tr')->subject('Hesabınız Oluşturuldu');
+         * $message->from('staj@trends.com.tr', 'Staj Takip Sistemi Yönetim');
+         * */
+
 
         $user = User::create([
             'username' => $validated['username'],

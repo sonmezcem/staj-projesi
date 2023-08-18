@@ -7,12 +7,7 @@
     <div class="main_container">
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
-                <div class="navbar nav_title">
-                    <a href="{{url('')}}" class="site_title"><img src="{{url('')}}/images/firat_logo.gif" width="45"
-                                                                  height="45"></i> <span>Fırat Üniversitesi</span></a>
-                </div>
-
-
+                @include('student.common.logo')
                 <div class="clearfix"></div>
 
                 <!-- menu profile quick info -->
@@ -242,8 +237,6 @@
                                 <h2>Evraklar</h2>
                                 <div class="clearfix"></div>
                             </div>
-
-                            {{$documentTypes}}
 
                             @foreach($documentTypes as $documentType)
 
