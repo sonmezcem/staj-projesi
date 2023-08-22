@@ -36,18 +36,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-/*Route::get('/admin', function () {
-    return view('admin.index');
-})->middleware('auth', 'role:Yönetici')->name('admin.index');
-
-Route::get('/officer', function () {
-    return view('officer.index');
-})->middleware('auth', 'role:Yetkili')->name('officer.index');*/
-
-/*Route::get('/student', function () {
-    return view('student.index');
-})->middleware('auth', 'role:Öğrenci')->name('student.index');*/
-
 Route::middleware(['auth', 'role:Yönetici'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [IndexController::class, 'index'])->name('index');
     Route::resource('/roles', RoleController::class);

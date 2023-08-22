@@ -27,7 +27,7 @@ class AdminSeeder extends Seeder
         ])->assignRole('Öğrenci');
 
         $student = Student::create([
-            'student_number' => 215,
+            'student_number' => 959,
             'internship_start_date' => '2023-06-09',
             'internship_end_date' => '2023-09-09',
             'internship_status' => 1,

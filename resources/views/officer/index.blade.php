@@ -191,6 +191,7 @@
                                                         <div class="d-flex">
                                                             <a href="{{route('officer.students.edit', $user->id)}}"
                                                                class="btn btn-primary text-light">İncele</a>
+{{--
                                                             <form
                                                                 id="ogrenciSilme-{{$user->id}}"
                                                                 action="{{route('officer.students.destroy', $user->id)}}"
@@ -204,6 +205,7 @@
                                                                         onclick="ogrenciSilme-({{$user->id}})">Sil
                                                                 </button>
                                                             </form>
+--}}
                                                         </div>
                                                     </td>
                                                 </tr>

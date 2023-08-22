@@ -43,3 +43,4 @@ $student['internship_type'] = 1; /// seçilene göre olacak... 1 Zorunlu 2 Gön�
 -----------
 YENİ BUGLAR
 -----------
+yajra datatable
